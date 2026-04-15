@@ -416,27 +416,20 @@ footer a:hover{color:var(--yellow);}
   <div class="cards-grid" id="cards-grid">
 
     <div class="card" onclick="openLightbox(0)">
-      <img src="images/ariel1.jpg" alt="Ariel 1">
+      <img src="images/ariel1.jpg" alt="Ariel">
       <div class="card-overlay">
         <div class="card-name">אריאל</div>
       </div>
     </div>
 
     <div class="card" onclick="openLightbox(1)">
-      <img src="images/ariel2.jpg" alt="Ariel 2">
+      <img src="images/image2.png" alt="Work 2">
       <div class="card-overlay">
-        <div class="card-name">אריאל</div>
+        <div class="card-name">עבודה 2</div>
       </div>
     </div>
 
     <div class="card" onclick="openLightbox(2)">
-      <img src="images/image2.png" alt="Work 3">
-      <div class="card-overlay">
-        <div class="card-name">עבודה 3</div>
-      </div>
-    </div>
-
-    <div class="card" onclick="openLightbox(3)">
       <img src="images/image3.png" alt="Work 3">
       <div class="card-overlay">
         <div class="card-name">S.O.S (Dogè)</div>
@@ -449,9 +442,12 @@ footer a:hover{color:var(--yellow);}
 <!-- LIGHTBOX -->
 <div id="lightbox">
   <button class="lb-close" onclick="closeLightbox()">✕</button>
-  <div class="lb-inner">
+  <div class="lb-inner" id="lb-inner">
     <div class="lb-img">
       <img id="lb-image" src="" alt="">
+    </div>
+    <div id="lb-image2-wrap" class="lb-img" style="display:none">
+      <img id="lb-image2" src="" alt="">
     </div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
@@ -473,19 +469,14 @@ footer a:hover{color:var(--yellow);}
 const works = [
   {
     img: 'images/ariel1.jpg',
-    name: 'אריאל',
-    tag: '',
-    desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
-  },
-  {
-    img: 'images/ariel2.jpg',
+    img2: 'images/ariel2.jpg',
     name: 'אריאל',
     tag: '',
     desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
   },
   {
     img: 'images/image2.png',
-    name: 'עבודה 3',
+    name: 'עבודה 2',
     tag: '',
     desc: 'תיאור העבודה.'
   },
@@ -504,6 +495,16 @@ function openLightbox(i) {
   document.getElementById('lb-title').textContent = w.name;
   document.getElementById('lb-tag').textContent = w.tag;
   document.getElementById('lb-desc').textContent = w.desc;
+  const img2wrap = document.getElementById('lb-image2-wrap');
+  const inner = document.getElementById('lb-inner');
+  if (w.img2) {
+    document.getElementById('lb-image2').src = w.img2;
+    img2wrap.style.display = 'flex';
+    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
+  } else {
+    img2wrap.style.display = 'none';
+    inner.style.gridTemplateColumns = '1fr 1fr';
+  }
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -644,19 +645,14 @@ btn.addEventListener('click', () => {
 const works = [
   {
     img: 'images/ariel1.jpg',
-    name: 'אריאל',
-    tag: '',
-    desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
-  },
-  {
-    img: 'images/ariel2.jpg',
+    img2: 'images/ariel2.jpg',
     name: 'אריאל',
     tag: '',
     desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
   },
   {
     img: 'images/image2.png',
-    name: 'עבודה 3',
+    name: 'עבודה 2',
     tag: '',
     desc: 'תיאור העבודה.'
   },
@@ -675,6 +671,16 @@ function openLightbox(i) {
   document.getElementById('lb-title').textContent = w.name;
   document.getElementById('lb-tag').textContent = w.tag;
   document.getElementById('lb-desc').textContent = w.desc;
+  const img2wrap = document.getElementById('lb-image2-wrap');
+  const inner = document.getElementById('lb-inner');
+  if (w.img2) {
+    document.getElementById('lb-image2').src = w.img2;
+    img2wrap.style.display = 'flex';
+    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
+  } else {
+    img2wrap.style.display = 'none';
+    inner.style.gridTemplateColumns = '1fr 1fr';
+  }
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
