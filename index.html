@@ -423,13 +423,20 @@ footer a:hover{color:var(--yellow);}
     </div>
 
     <div class="card" onclick="openLightbox(1)">
-      <img src="images/image2.png" alt="Work 2">
+      <img src="images/quattro1.png" alt="Audi Quattro">
       <div class="card-overlay">
-        <div class="card-name">עבודה 2</div>
+        <div class="card-name">Audi Quattro</div>
       </div>
     </div>
 
     <div class="card" onclick="openLightbox(2)">
+      <img src="images/image2.png" alt="Work 3">
+      <div class="card-overlay">
+        <div class="card-name">עבודה 3</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openLightbox(3)">
       <img src="images/image3.png" alt="Work 3">
       <div class="card-overlay">
         <div class="card-name">S.O.S (Dogè)</div>
@@ -448,6 +455,9 @@ footer a:hover{color:var(--yellow);}
     </div>
     <div id="lb-image2-wrap" class="lb-img" style="display:none">
       <img id="lb-image2" src="" alt="">
+    </div>
+    <div id="lb-image3-wrap" class="lb-img" style="display:none">
+      <img id="lb-image3" src="" alt="">
     </div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
@@ -475,8 +485,16 @@ const works = [
     desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
   },
   {
+    img: 'images/quattro1.png',
+    img2: 'images/quattro2.png',
+    img3: 'images/quattro3.png',
+    name: 'Audi Quattro',
+    tag: '',
+    desc: 'פרינטים לדגמים בעלי מערכת "קוואטרו" של אאודי.'
+  },
+  {
     img: 'images/image2.png',
-    name: 'עבודה 2',
+    name: 'עבודה 3',
     tag: '',
     desc: 'תיאור העבודה.'
   },
@@ -496,14 +514,26 @@ function openLightbox(i) {
   document.getElementById('lb-tag').textContent = w.tag;
   document.getElementById('lb-desc').textContent = w.desc;
   const img2wrap = document.getElementById('lb-image2-wrap');
+  const img3wrap = document.getElementById('lb-image3-wrap');
   const inner = document.getElementById('lb-inner');
-  if (w.img2) {
+  if (w.img3) {
+    document.getElementById('lb-image2').src = w.img2;
+    document.getElementById('lb-image3').src = w.img3;
+    img2wrap.style.display = 'flex';
+    img3wrap.style.display = 'flex';
+    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
+    inner.style.gridTemplateRows = 'auto auto';
+  } else if (w.img2) {
     document.getElementById('lb-image2').src = w.img2;
     img2wrap.style.display = 'flex';
+    img3wrap.style.display = 'none';
     inner.style.gridTemplateColumns = '1fr 1fr 1fr';
+    inner.style.gridTemplateRows = '';
   } else {
     img2wrap.style.display = 'none';
+    img3wrap.style.display = 'none';
     inner.style.gridTemplateColumns = '1fr 1fr';
+    inner.style.gridTemplateRows = '';
   }
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -651,8 +681,16 @@ const works = [
     desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
   },
   {
+    img: 'images/quattro1.png',
+    img2: 'images/quattro2.png',
+    img3: 'images/quattro3.png',
+    name: 'Audi Quattro',
+    tag: '',
+    desc: 'פרינטים לדגמים בעלי מערכת "קוואטרו" של אאודי.'
+  },
+  {
     img: 'images/image2.png',
-    name: 'עבודה 2',
+    name: 'עבודה 3',
     tag: '',
     desc: 'תיאור העבודה.'
   },
@@ -672,14 +710,26 @@ function openLightbox(i) {
   document.getElementById('lb-tag').textContent = w.tag;
   document.getElementById('lb-desc').textContent = w.desc;
   const img2wrap = document.getElementById('lb-image2-wrap');
+  const img3wrap = document.getElementById('lb-image3-wrap');
   const inner = document.getElementById('lb-inner');
-  if (w.img2) {
+  if (w.img3) {
+    document.getElementById('lb-image2').src = w.img2;
+    document.getElementById('lb-image3').src = w.img3;
+    img2wrap.style.display = 'flex';
+    img3wrap.style.display = 'flex';
+    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
+    inner.style.gridTemplateRows = 'auto auto';
+  } else if (w.img2) {
     document.getElementById('lb-image2').src = w.img2;
     img2wrap.style.display = 'flex';
+    img3wrap.style.display = 'none';
     inner.style.gridTemplateColumns = '1fr 1fr 1fr';
+    inner.style.gridTemplateRows = '';
   } else {
     img2wrap.style.display = 'none';
+    img3wrap.style.display = 'none';
     inner.style.gridTemplateColumns = '1fr 1fr';
+    inner.style.gridTemplateRows = '';
   }
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
