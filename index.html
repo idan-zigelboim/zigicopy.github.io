@@ -308,15 +308,15 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* LIGHTBOX */
 #lightbox{
   position:fixed;inset:0;z-index:2000;
-  background:rgba(0,0,0,0.93);
+  background:rgba(0,0,0,0.96);
   display:none;align-items:center;justify-content:center;
-  padding:32px;
+  padding:16px;
 }
 #lightbox.open{display:flex;animation:lbFade 0.25s ease;}
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
 .lb-inner{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:24px;max-width:1400px;width:100%;max-height:92vh;align-items:start;
+  gap:16px;max-width:98vw;width:100%;max-height:96vh;align-items:center;
 }
 .lb-img{display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .lb-img img{max-height:88vh;max-width:100%;object-fit:contain;display:block;}
@@ -465,14 +465,17 @@ footer a:hover{color:var(--yellow);}
   <button class="lb-close" onclick="closeLightbox()">✕</button>
   <div class="lb-inner" id="lb-inner">
     <div class="lb-img">
-      <img id="lb-image" src="" alt="" style="max-height:75vh;max-width:100%;object-fit:contain;">
+      <img id="lb-image" src="" alt="" style="max-height:88vh;max-width:100%;object-fit:contain;">
     </div>
     <div id="lb-image2-wrap" class="lb-img" style="display:none">
-      <img id="lb-image2" src="" alt="" style="max-height:75vh;max-width:100%;object-fit:contain;">
+      <img id="lb-image2" src="" alt="" style="max-height:88vh;max-width:100%;object-fit:contain;">
     </div>
     <video id="lb-video" controls style="display:none;max-height:75vh;max-width:100%;align-self:center;"></video>
     <div id="lb-image3-wrap" class="lb-img" style="display:none">
-      <img id="lb-image3" src="" alt="" style="max-height:75vh;max-width:100%;object-fit:contain;">
+      <img id="lb-image3" src="" alt="" style="max-height:88vh;max-width:100%;object-fit:contain;">
+    </div>
+    <div id="lb-image4-wrap" class="lb-img" style="display:none">
+      <img id="lb-image4" src="" alt="" style="max-height:88vh;max-width:100%;object-fit:contain;">
     </div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
@@ -571,12 +574,17 @@ function openLightbox(i) {
   }
 
   // Slot 3
-  if (w.img3) { document.getElementById('lb-image3').src = w.img3; img3wrap.style.display='flex'; }
-  else img3wrap.style.display='none';
+  if (w.img3) { document.getElementById('lb-image3').src = w.img3; document.getElementById('lb-image3-wrap').style.display='flex'; }
+  else document.getElementById('lb-image3-wrap').style.display='none';
+
+  // Slot 4
+  const img4wrap = document.getElementById('lb-image4-wrap');
+  if (w.img4) { document.getElementById('lb-image4').src = w.img4; img4wrap.style.display='flex'; }
+  else img4wrap.style.display='none';
 
   // Count visible slots
-  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + 1;
-  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,4)}, 1fr)`;
+  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + (w.img4?1:0) + 1;
+  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,5)}, 1fr)`;
 
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -798,12 +806,17 @@ function openLightbox(i) {
   }
 
   // Slot 3
-  if (w.img3) { document.getElementById('lb-image3').src = w.img3; img3wrap.style.display='flex'; }
-  else img3wrap.style.display='none';
+  if (w.img3) { document.getElementById('lb-image3').src = w.img3; document.getElementById('lb-image3-wrap').style.display='flex'; }
+  else document.getElementById('lb-image3-wrap').style.display='none';
+
+  // Slot 4
+  const img4wrap = document.getElementById('lb-image4-wrap');
+  if (w.img4) { document.getElementById('lb-image4').src = w.img4; img4wrap.style.display='flex'; }
+  else img4wrap.style.display='none';
 
   // Count visible slots
-  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + 1;
-  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,4)}, 1fr)`;
+  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + (w.img4?1:0) + 1;
+  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,5)}, 1fr)`;
 
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
