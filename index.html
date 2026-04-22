@@ -315,17 +315,21 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #lightbox.open{display:flex;animation:lbFade 0.25s ease;}
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
 .lb-inner{
-  display:flex;flex-direction:column;gap:24px;
-  max-width:92vw;width:100%;padding:8px;
+  display:grid;
+  grid-template-columns:1fr 280px;
+  gap:40px;
+  max-width:95vw;width:100%;
+  align-items:start;
+  padding:8px;
 }
 .lb-images-row{
   display:grid;
   grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
   gap:12px;
-  direction:rtl;
 }
-.lb-img img{width:100%;max-height:36vh;object-fit:contain;display:block;}
-video.lb-video-el{width:100%;max-height:36vh;display:block;}
+.lb-images-row .lb-img{display:flex;align-items:center;justify-content:center;}
+.lb-images-row video{max-height:38vh;width:100%;}
 .lb-img{display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .lb-img img{max-height:88vh;max-width:100%;object-fit:contain;display:block;}
 .lb-info{display:flex;flex-direction:column;gap:16px;padding-top:8px;}
@@ -500,106 +504,7 @@ footer a:hover{color:var(--yellow);}
 <button id="music-btn" title="Toggle music">♪</button>
 <audio id="sw-audio" src="music.mp3" preload="auto"></audio>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-// ═══ נתוני העבודות — ערוך כאן ═══
-const works = [
-  {
-    img: 'images/ariel1.jpg',
-    img2: 'images/ariel2.jpg',
-    name: 'אריאל',
-    tag: '',
-    desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
-  },
-  {
-    img: 'images/quattro1.png',
-    img2: 'images/quattro2.png',
-    img3: 'images/quattro3.png',
-    name: 'Audi Quattro',
-    tag: '',
-    desc: 'פרינטים לדגמים בעלי מערכת "קוואטרו" של אאודי.'
-  },
-  {
-    img: 'images/lemon1.png',
-    img2: 'images/lemon2.png',
-    name: 'וופל לימון — עלית',
-    tag: '',
-    desc: 'פרינטים לוופל לימון של עלית.'
-  },
-  {
-    img: 'images/wolt1.png',
-    img2: 'videos/wolt2.mp4',
-    img3: 'images/wolt3.png',
-    img4: 'images/wolt4.png',
-    video: null,
-    name: 'וולט (יום האישה במקאן)',
-    tag: '',
-    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקונספט שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי עם כלביא.'
-  },
-  {
-    img: 'images/image2.png',
-    name: 'עבודה 5',
-    tag: '',
-    desc: 'תיאור העבודה.'
-  },
-  {
-    img: 'images/image3.png',
-    name: 'S.O.S (Dogè)',
-    tag: '',
-    desc: 'Dogè היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך קריאייטיב לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
-  }
-];
-// ═══════════════════════════════
-
-function openLightbox(i) {
-  const w = works[i];
-  document.getElementById('lb-title').textContent = w.name;
-  document.getElementById('lb-desc').innerHTML = w.desc.replace(/\n/g, '<br>');
-
-  // Build ordered slots: [img, img2/video, img3, img4]
-  const slots = [
-    { src: w.img,  isVideo: false },
-    { src: w.img2, isVideo: w.img2 && w.img2.endsWith('.mp4') },
-    { src: w.img3, isVideo: false },
-    { src: w.img4, isVideo: false },
-  ].filter(s => s.src);
-
-  const slotEls = ['lb-slot1','lb-slot2','lb-slot3','lb-slot4'];
-  slotEls.forEach((id, idx) => {
-    const el = document.getElementById(id);
-    el.innerHTML = '';
-    if (slots[idx]) {
-      if (slots[idx].isVideo) {
-        const v = document.createElement('video');
-        v.src = slots[idx].src;
-        v.controls = true;
-        v.className = 'lb-video-el';
-        el.appendChild(v);
-      } else {
-        const img = document.createElement('img');
-        img.src = slots[idx].src;
-        img.style.cssText = 'width:100%;max-height:36vh;object-fit:contain;display:block;';
-        el.appendChild(img);
-      }
-      el.style.display = 'flex';
-    } else {
-      el.style.display = 'none';
-    }
-  });
-
-  document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-  document.querySelectorAll('#lightbox video').forEach(v => { v.pause(); v.src = ''; });
-}
-document.getElementById('lightbox').addEventListener('click', e => {
-  if (e.target === document.getElementById('lightbox')) closeLightbox();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-</script><script>
+<script>
 // Cursor
 
 
@@ -774,39 +679,47 @@ const works = [
 
 function openLightbox(i) {
   const w = works[i];
+  const img1 = document.getElementById('lb-image');
+  const vid = document.getElementById('lb-video');
+  const img2wrap = document.getElementById('lb-image2-wrap');
+  const img3wrap = document.getElementById('lb-image3-wrap');
+  const inner = document.getElementById('lb-inner');
+
   document.getElementById('lb-title').textContent = w.name;
+  document.getElementById('lb-tag').textContent = w.tag || '';
   document.getElementById('lb-desc').innerHTML = w.desc.replace(/\n/g, '<br>');
 
-  // Build ordered slots: [img, img2/video, img3, img4]
-  const slots = [
-    { src: w.img,  isVideo: false },
-    { src: w.img2, isVideo: w.img2 && w.img2.endsWith('.mp4') },
-    { src: w.img3, isVideo: false },
-    { src: w.img4, isVideo: false },
-  ].filter(s => s.src);
+  // Slot 1: main image
+  img1.src = w.img;
+  img1.style.display = 'block';
+  vid.style.display = 'none';
+  vid.src = '';
 
-  const slotEls = ['lb-slot1','lb-slot2','lb-slot3','lb-slot4'];
-  slotEls.forEach((id, idx) => {
-    const el = document.getElementById(id);
-    el.innerHTML = '';
-    if (slots[idx]) {
-      if (slots[idx].isVideo) {
-        const v = document.createElement('video');
-        v.src = slots[idx].src;
-        v.controls = true;
-        v.className = 'lb-video-el';
-        el.appendChild(v);
-      } else {
-        const img = document.createElement('img');
-        img.src = slots[idx].src;
-        img.style.cssText = 'width:100%;max-height:36vh;object-fit:contain;display:block;';
-        el.appendChild(img);
-      }
-      el.style.display = 'flex';
-    } else {
-      el.style.display = 'none';
-    }
-  });
+  // Slot 2: video or image
+  const slot2isVideo = w.img2 && w.img2.endsWith('.mp4');
+  if (slot2isVideo) {
+    vid.src = w.img2;
+    vid.style.display = 'block';
+    img2wrap.style.display = 'none';
+  } else if (w.img2) {
+    document.getElementById('lb-image2').src = w.img2;
+    img2wrap.style.display = 'flex';
+  } else {
+    img2wrap.style.display = 'none';
+  }
+
+  // Slot 3
+  if (w.img3) { document.getElementById('lb-image3').src = w.img3; document.getElementById('lb-image3-wrap').style.display='flex'; }
+  else document.getElementById('lb-image3-wrap').style.display='none';
+
+  // Slot 4
+  const img4wrap = document.getElementById('lb-image4-wrap');
+  if (w.img4) { document.getElementById('lb-image4').src = w.img4; img4wrap.style.display='flex'; }
+  else img4wrap.style.display='none';
+
+  // Count visible slots
+  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + (w.img4?1:0) + 1;
+  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,5)}, 1fr)`;
 
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -814,7 +727,9 @@ function openLightbox(i) {
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
-  document.querySelectorAll('#lightbox video').forEach(v => { v.pause(); v.src = ''; });
+  const vid = document.getElementById('lb-video');
+  vid.pause();
+  vid.src = '';
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
