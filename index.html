@@ -348,6 +348,42 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 .lb-close:hover{background:rgba(255,232,26,0.1);border-color:var(--yellow);}
 
+
+/* ZOOM */
+#zoom-lb{
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(0,0,0,0.97);
+  display:none;align-items:center;justify-content:center;
+}
+#zoom-lb.open{display:flex;}
+#zoom-img{max-height:90vh;max-width:88vw;object-fit:contain;display:block;}
+#zoom-video{max-height:90vh;max-width:88vw;display:none;}
+.zoom-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(255,232,26,0.1);border:1px solid rgba(255,232,26,0.3);
+  color:var(--yellow);font-size:32px;
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.2s;user-select:none;
+}
+.zoom-arrow:hover{background:rgba(255,232,26,0.2);border-color:var(--yellow);}
+#zoom-prev{left:20px;}
+#zoom-next{right:20px;}
+#zoom-close-btn{
+  position:absolute;top:20px;right:20px;
+  background:transparent;border:1px solid rgba(255,232,26,0.3);
+  color:var(--yellow);font-size:16px;
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.2s;
+}
+#zoom-close-btn:hover{background:rgba(255,232,26,0.1);border-color:var(--yellow);}
+#zoom-counter{
+  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+  font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:0.2em;
+  color:rgba(255,232,26,0.35);
+}
+
 /* MUSIC BTN */
 #music-btn{
   position:fixed;bottom:32px;right:32px;z-index:200;
@@ -537,7 +573,7 @@ section.addEventListener('mouseleave',()=>crawlEl.classList.remove('paused'));
 
 // Hide scroll hint after scroll
 window.addEventListener('scroll',()=>{
-  document.getElementById('scroll-hint').style.opacity='0';
+  const sh = document.getElementById('scroll-hint'); if(sh) sh.style.opacity='0';
 },{once:true});
 
 
@@ -738,6 +774,70 @@ document.getElementById('lightbox').addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
+
+// ZOOM
+let zoomItems = [];
+let zoomIdx = 0;
+
+function openZoom(items, idx) {
+  zoomItems = items;
+  zoomIdx = idx;
+  renderZoom();
+  document.getElementById('zoom-lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function renderZoom() {
+  const item = zoomItems[zoomIdx];
+  const img = document.getElementById('zoom-img');
+  const vid = document.getElementById('zoom-video');
+  if (item.isVideo) {
+    vid.src = item.src;
+    vid.style.display = 'block';
+    img.style.display = 'none';
+  } else {
+    img.src = item.src;
+    img.style.display = 'block';
+    vid.pause(); vid.src = '';
+    vid.style.display = 'none';
+  }
+  document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
+  document.getElementById('zoom-prev').style.opacity = zoomIdx > 0 ? '1' : '0.2';
+  document.getElementById('zoom-next').style.opacity = zoomIdx < zoomItems.length-1 ? '1' : '0.2';
+}
+
+function zoomNav(dir) {
+  const n = zoomIdx + dir;
+  if (n >= 0 && n < zoomItems.length) { zoomIdx = n; renderZoom(); }
+}
+
+function closeZoom() {
+  document.getElementById('zoom-lb').classList.remove('open');
+  document.body.style.overflow = '';
+  const v = document.getElementById('zoom-video');
+  v.pause(); v.src = '';
+}
+
+document.getElementById('zoom-lb').addEventListener('click', e => {
+  if (e.target === document.getElementById('zoom-lb')) closeZoom();
+});
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('zoom-lb').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft') zoomNav(1);
+  if (e.key === 'ArrowRight') zoomNav(-1);
+  if (e.key === 'Escape') closeZoom();
+});
+
 </script>
+
+<div id="zoom-lb">
+  <button id="zoom-close-btn" onclick="closeZoom()">✕</button>
+  <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(-1)">‹</div>
+  <img id="zoom-img" src="" alt="">
+  <video id="zoom-video" controls></video>
+  <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(1)">›</div>
+  <div id="zoom-counter"></div>
+</div>
 </body>
 </html>
