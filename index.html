@@ -316,7 +316,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
 .lb-inner{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:48px;max-width:1300px;width:100%;max-height:92vh;
+  gap:24px;max-width:1400px;width:100%;max-height:92vh;align-items:start;
 }
 .lb-img{display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .lb-img img{max-height:88vh;max-width:100%;object-fit:contain;display:block;}
@@ -437,13 +437,20 @@ footer a:hover{color:var(--yellow);}
     </div>
 
     <div class="card" onclick="openLightbox(3)">
-      <img src="images/image2.png" alt="Work 4">
+      <img src="images/wolt1.png" alt="Wolt">
       <div class="card-overlay">
-        <div class="card-name">עבודה 4</div>
+        <div class="card-name">וולט (יום האישה במקאן)</div>
       </div>
     </div>
 
     <div class="card" onclick="openLightbox(4)">
+      <img src="images/image2.png" alt="Work 5">
+      <div class="card-overlay">
+        <div class="card-name">עבודה 5</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openLightbox(5)">
       <img src="images/image3.png" alt="Work 3">
       <div class="card-overlay">
         <div class="card-name">S.O.S (Dogè)</div>
@@ -458,13 +465,14 @@ footer a:hover{color:var(--yellow);}
   <button class="lb-close" onclick="closeLightbox()">✕</button>
   <div class="lb-inner" id="lb-inner">
     <div class="lb-img">
-      <img id="lb-image" src="" alt="">
+      <img id="lb-image" src="" alt="" style="max-height:75vh;max-width:100%;object-fit:contain;">
     </div>
     <div id="lb-image2-wrap" class="lb-img" style="display:none">
-      <img id="lb-image2" src="" alt="">
+      <img id="lb-image2" src="" alt="" style="max-height:75vh;max-width:100%;object-fit:contain;">
     </div>
+    <video id="lb-video" controls style="display:none;max-height:75vh;max-width:100%;align-self:center;"></video>
     <div id="lb-image3-wrap" class="lb-img" style="display:none">
-      <img id="lb-image3" src="" alt="">
+      <img id="lb-image3" src="" alt="" style="max-height:75vh;max-width:100%;object-fit:contain;">
     </div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
@@ -507,8 +515,18 @@ const works = [
     desc: 'פרינטים לוופל לימון של עלית.'
   },
   {
+    img: 'images/wolt1.png',
+    img2: 'videos/wolt2.mp4',
+    img3: 'images/wolt3.png',
+    img4: 'images/wolt4.png',
+    video: null,
+    name: 'וולט (יום האישה במקאן)',
+    tag: '',
+    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקונספט שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי עם כלביא.'
+  },
+  {
     img: 'images/image2.png',
-    name: 'עבודה 4',
+    name: 'עבודה 5',
     tag: '',
     desc: 'תיאור העבודה.'
   },
@@ -523,38 +541,52 @@ const works = [
 
 function openLightbox(i) {
   const w = works[i];
-  document.getElementById('lb-image').src = w.img;
-  document.getElementById('lb-title').textContent = w.name;
-  document.getElementById('lb-tag').textContent = w.tag;
-  document.getElementById('lb-desc').textContent = w.desc;
+  const img1 = document.getElementById('lb-image');
+  const vid = document.getElementById('lb-video');
   const img2wrap = document.getElementById('lb-image2-wrap');
   const img3wrap = document.getElementById('lb-image3-wrap');
   const inner = document.getElementById('lb-inner');
-  if (w.img3) {
-    document.getElementById('lb-image2').src = w.img2;
-    document.getElementById('lb-image3').src = w.img3;
-    img2wrap.style.display = 'flex';
-    img3wrap.style.display = 'flex';
-    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
-    inner.style.gridTemplateRows = 'auto auto';
+
+  document.getElementById('lb-title').textContent = w.name;
+  document.getElementById('lb-tag').textContent = w.tag || '';
+  document.getElementById('lb-desc').innerHTML = w.desc.replace(/\n/g, '<br>');
+
+  // Slot 1: main image
+  img1.src = w.img;
+  img1.style.display = 'block';
+  vid.style.display = 'none';
+  vid.src = '';
+
+  // Slot 2: video or image
+  const slot2isVideo = w.img2 && w.img2.endsWith('.mp4');
+  if (slot2isVideo) {
+    vid.src = w.img2;
+    vid.style.display = 'block';
+    img2wrap.style.display = 'none';
   } else if (w.img2) {
     document.getElementById('lb-image2').src = w.img2;
     img2wrap.style.display = 'flex';
-    img3wrap.style.display = 'none';
-    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
-    inner.style.gridTemplateRows = '';
   } else {
     img2wrap.style.display = 'none';
-    img3wrap.style.display = 'none';
-    inner.style.gridTemplateColumns = '1fr 1fr';
-    inner.style.gridTemplateRows = '';
   }
+
+  // Slot 3
+  if (w.img3) { document.getElementById('lb-image3').src = w.img3; img3wrap.style.display='flex'; }
+  else img3wrap.style.display='none';
+
+  // Count visible slots
+  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + 1;
+  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,4)}, 1fr)`;
+
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
+  const vid = document.getElementById('lb-video');
+  vid.pause();
+  vid.src = '';
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
@@ -710,8 +742,18 @@ const works = [
     desc: 'פרינטים לוופל לימון של עלית.'
   },
   {
+    img: 'images/wolt1.png',
+    img2: 'videos/wolt2.mp4',
+    img3: 'images/wolt3.png',
+    img4: 'images/wolt4.png',
+    video: null,
+    name: 'וולט (יום האישה במקאן)',
+    tag: '',
+    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקונספט שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי עם כלביא.'
+  },
+  {
     img: 'images/image2.png',
-    name: 'עבודה 4',
+    name: 'עבודה 5',
     tag: '',
     desc: 'תיאור העבודה.'
   },
@@ -726,38 +768,52 @@ const works = [
 
 function openLightbox(i) {
   const w = works[i];
-  document.getElementById('lb-image').src = w.img;
-  document.getElementById('lb-title').textContent = w.name;
-  document.getElementById('lb-tag').textContent = w.tag;
-  document.getElementById('lb-desc').textContent = w.desc;
+  const img1 = document.getElementById('lb-image');
+  const vid = document.getElementById('lb-video');
   const img2wrap = document.getElementById('lb-image2-wrap');
   const img3wrap = document.getElementById('lb-image3-wrap');
   const inner = document.getElementById('lb-inner');
-  if (w.img3) {
-    document.getElementById('lb-image2').src = w.img2;
-    document.getElementById('lb-image3').src = w.img3;
-    img2wrap.style.display = 'flex';
-    img3wrap.style.display = 'flex';
-    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
-    inner.style.gridTemplateRows = 'auto auto';
+
+  document.getElementById('lb-title').textContent = w.name;
+  document.getElementById('lb-tag').textContent = w.tag || '';
+  document.getElementById('lb-desc').innerHTML = w.desc.replace(/\n/g, '<br>');
+
+  // Slot 1: main image
+  img1.src = w.img;
+  img1.style.display = 'block';
+  vid.style.display = 'none';
+  vid.src = '';
+
+  // Slot 2: video or image
+  const slot2isVideo = w.img2 && w.img2.endsWith('.mp4');
+  if (slot2isVideo) {
+    vid.src = w.img2;
+    vid.style.display = 'block';
+    img2wrap.style.display = 'none';
   } else if (w.img2) {
     document.getElementById('lb-image2').src = w.img2;
     img2wrap.style.display = 'flex';
-    img3wrap.style.display = 'none';
-    inner.style.gridTemplateColumns = '1fr 1fr 1fr';
-    inner.style.gridTemplateRows = '';
   } else {
     img2wrap.style.display = 'none';
-    img3wrap.style.display = 'none';
-    inner.style.gridTemplateColumns = '1fr 1fr';
-    inner.style.gridTemplateRows = '';
   }
+
+  // Slot 3
+  if (w.img3) { document.getElementById('lb-image3').src = w.img3; img3wrap.style.display='flex'; }
+  else img3wrap.style.display='none';
+
+  // Count visible slots
+  const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + 1;
+  inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,4)}, 1fr)`;
+
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
+  const vid = document.getElementById('lb-video');
+  vid.pause();
+  vid.src = '';
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
