@@ -493,12 +493,6 @@ footer a:hover{color:var(--yellow);}
       </div>
     </div>
 
-    <div class="card" onclick="openLightbox(4)">
-      <img src="images/image2.png" alt="Work 5">
-      <div class="card-overlay">
-        <div class="card-name">עבודה 5</div>
-      </div>
-    </div>
 
     <div class="card" onclick="openLightbox(5)">
       <img src="images/image3.png" alt="Work 3">
@@ -700,17 +694,18 @@ const works = [
     tag: '',
     desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקונספט שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי עם כלביא.'
   },
-  {
-    img: 'images/image2.png',
-    name: 'עבודה 5',
-    tag: '',
-    desc: 'תיאור העבודה.'
-  },
+
   {
     img: 'images/image3.png',
     name: 'אימוץ כלבים מבוגרים (Dogè) - S.O.S',
     tag: '',
     desc: 'Dogè היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך קריאייטיב לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
+  },
+  {
+    img: 'images/oddpaws1.png',
+    name: 'ODDPAWS',
+    tag: '',
+    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ODDPAWS.'
   }
 ];
 // ═══════════════════════════════
@@ -818,8 +813,11 @@ function closeZoom() {
   v.pause(); v.src = '';
 }
 
-document.getElementById('zoom-lb').addEventListener('click', e => {
-  if (e.target === document.getElementById('zoom-lb')) closeZoom();
+document.addEventListener('DOMContentLoaded', () => {
+  const zoomLb = document.getElementById('zoom-lb');
+  if(zoomLb) zoomLb.addEventListener('click', e => {
+    if (e.target === zoomLb) closeZoom();
+  });
 });
 
 document.addEventListener('keydown', e => {
