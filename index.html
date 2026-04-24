@@ -709,8 +709,7 @@ const works = [
     desc: '<span style="unicode-bidi:embed;direction:ltr;display:inline-block;">Dogè</span> היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך <span style="direction:ltr;unicode-bidi:embed;">360</span> לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
   },
   {
-    img: 'images/oddpaws_thumb.png',
-    video: 'videos/ODDPAWS.mp4',
+    img: 'videos/ODDPAWS.mp4',
     name: 'ODDPAWS',
     tag: '',
     desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
@@ -733,11 +732,18 @@ function openLightbox(i) {
     .map(line => line.trim() ? `<p style="direction:rtl;text-align:right;margin:0 0 8px;unicode-bidi:bidi-override;">${line}</p>` : '<br>')
     .join('');
 
-  // Slot 1: main image
-  img1.src = w.img;
-  img1.style.display = 'block';
-  vid.style.display = 'none';
-  vid.src = '';
+  // Slot 1: image or video
+  const slot1isVideo = w.img && w.img.endsWith('.mp4');
+  if (slot1isVideo) {
+    vid.src = w.img;
+    vid.style.display = 'block';
+    img1.style.display = 'none';
+  } else {
+    img1.src = w.img;
+    img1.style.display = 'block';
+    vid.style.display = 'none';
+    vid.src = '';
+  }
 
   // Slot 2: video or image
   const slot2isVideo = w.img2 && w.img2.endsWith('.mp4');
