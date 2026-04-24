@@ -494,10 +494,17 @@ footer a:hover{color:var(--yellow);}
     </div>
 
 
-    <div class="card" onclick="openLightbox(5)">
-      <img src="images/image3.png" alt="Work 3">
+    <div class="card" onclick="openLightbox(4)">
+      <img src="images/image3.png" alt="Work">
       <div class="card-overlay">
         <div class="card-name">אימוץ כלבים מבוגרים (Dogè) - S.O.S</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="openLightbox(5)">
+      <video src="videos/ODDPAWS.mp4" style="width:100%;height:100%;object-fit:cover;" muted></video>
+      <div class="card-overlay">
+        <div class="card-name">ODDPAWS</div>
       </div>
     </div>
 
@@ -523,7 +530,7 @@ footer a:hover{color:var(--yellow);}
     </div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
-      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-title" id="lb-title" style="direction:rtl;text-align:right;unicode-bidi:plaintext;"></div>
       <div class="lb-desc" id="lb-desc"></div>
     </div>
   </div>
@@ -665,22 +672,22 @@ const works = [
   {
     img: 'images/ariel1.jpg',
     img2: 'images/ariel2.jpg',
-    name: 'אריאל מסיר כתמים',
+    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים — אריאל',
     tag: '',
-    desc: 'סדרת פרינטים למסיר הכתמים של אריאל.'
+    desc: 'פרינטים למסיר הכתמים של אריאל.'
   },
   {
     img: 'images/quattro1.png',
     img2: 'images/quattro2.png',
     img3: 'images/quattro3.png',
-    name: 'אאודי קוואטרו',
+    name: 'או שתנסו קוואטרו — אאודי',
     tag: '',
     desc: 'פרינטים לדגמים בעלי מערכת "קוואטרו" של אאודי.'
   },
   {
     img: 'images/lemon1.png',
     img2: 'images/lemon2.png',
-    name: 'עלית וופל לימון',
+    name: 'אין רגע לא נכון לוופל לימון — עלית',
     tag: '',
     desc: 'פרינטים לוופל לימון של עלית.'
   },
@@ -690,22 +697,23 @@ const works = [
     img3: 'images/wolt3.png',
     img4: 'images/wolt4.png',
     video: null,
-    name: 'יום האישה - וולט (מקאן)',
+    name: 'וולט יום האישה (תן קרדיט קבל קרדיט)',
     tag: '',
-    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקונספט שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי עם כלביא.'
+    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקמפיין דיגיטל שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי הפרסים.'
   },
 
   {
     img: 'images/image3.png',
-    name: 'אימוץ כלבים מבוגרים (Dogè) - S.O.S',
+    name: 'אימוץ כלבים מבוגרים — S.O.S',
     tag: '',
-    desc: 'Dogè היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך קריאייטיב לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
+    desc: '<span style="unicode-bidi:embed;direction:ltr;display:inline-block;">Dogè</span> היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך <span style="direction:ltr;unicode-bidi:embed;">360</span> לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
   },
   {
-    img: 'images/oddpaws1.png',
+    img: 'images/oddpaws_thumb.png',
+    video: 'videos/ODDPAWS.mp4',
     name: 'ODDPAWS',
     tag: '',
-    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ODDPAWS.'
+    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
   }
 ];
 // ═══════════════════════════════
@@ -720,7 +728,10 @@ function openLightbox(i) {
 
   document.getElementById('lb-title').textContent = w.name;
   document.getElementById('lb-tag').textContent = w.tag || '';
-  document.getElementById('lb-desc').innerHTML = w.desc.replace(/\n/g, '<br>');
+  document.getElementById('lb-desc').innerHTML = w.desc
+    .split('\n')
+    .map(line => line.trim() ? `<p style="direction:rtl;text-align:right;margin:0 0 8px;unicode-bidi:bidi-override;">${line}</p>` : '<br>')
+    .join('');
 
   // Slot 1: main image
   img1.src = w.img;
