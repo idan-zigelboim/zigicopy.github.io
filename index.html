@@ -6,6 +6,18 @@
 <title>Idan Zigelboim</title>
 <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
+
+  @font-face {
+    font-family: 'StarJedi';
+    src: url('fonts/Starjedi.ttf') format('truetype');
+    font-weight: normal;
+  }
+  @font-face {
+    font-family: 'StarJhol';
+    src: url('fonts/Starjhol.ttf') format('truetype');
+    font-weight: normal;
+  }
+
 :root{
   --yellow:#FFE81A;
   --glow:rgba(255,232,26,0.25);
@@ -72,7 +84,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   100%{transform:translateY(-120%);opacity:0;}
 }
 
-.crawl-logo{
+.crawl-logo{font-family:'StarJedi','Oswald',sans-serif;
   font-family:'Oswald',sans-serif;font-weight:700;
   font-size:clamp(90px,13vw,180px);
   letter-spacing:0.18em;text-align:center;
@@ -151,7 +163,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   position:relative;z-index:10;
   padding:80px 0 120px;
 }
-.works-label{
+.works-label{font-family:'StarJedi','Oswald',sans-serif;
   font-family:'Oswald',sans-serif;font-size:11px;
   letter-spacing:0.35em;text-transform:uppercase;
   color:rgba(255,232,26,0.3);
@@ -302,7 +314,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   padding:24px;opacity:0;transition:opacity 0.3s;
 }
 .card:hover .card-overlay{opacity:1;}
-.card-name{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--yellow);letter-spacing:0.06em;}
+.card-name{font-family:'StarJedi','Oswald',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--yellow);letter-spacing:0.06em;}
 .card-tag{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,232,26,0.5);margin-top:6px;}
 
 /* LIGHTBOX */
@@ -336,7 +348,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-img{display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .lb-img img{max-height:88vh;max-width:100%;object-fit:contain;display:block;}
 .lb-info{display:flex;flex-direction:column;gap:16px;padding-top:8px;}
-.lb-title{font-family:'Oswald',sans-serif;font-size:clamp(28px,3vw,48px);font-weight:700;color:var(--yellow);text-shadow:0 0 30px var(--glow);letter-spacing:0.06em;}
+.lb-title{font-family:'StarJedi','Oswald',sans-serif;font-size:clamp(28px,3vw,48px);font-weight:700;color:var(--yellow);text-shadow:0 0 30px var(--glow);letter-spacing:0.06em;}
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
 .lb-desc{font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
 .lb-close{
@@ -425,7 +437,7 @@ footer a:hover{color:var(--yellow);}
 </div>
 
 <div id="logo-screen">
-  <div id="sw-logo">תיק<br>עבודות</div>
+  <div id="sw-logo" style="font-family:'StarJhol',sans-serif;">Portfolio</div>
 </div>
 
 
@@ -438,7 +450,7 @@ footer a:hover{color:var(--yellow);}
     <div id="crawl">
 
       <div class="crawl-logo">IDAN ZIGELBOIM</div>
-      <div class="crawl-title">תיק עבודות</div>
+      
 
       <div class="crawl-body">
         <p>
@@ -536,7 +548,6 @@ footer a:hover{color:var(--yellow);}
     <div id="lb-image4-wrap" class="lb-img" style="display:none">
       <img id="lb-image4" src="" alt="" style="max-height:88vh;max-width:100%;object-fit:contain;">
     </div>
-    <div id="lb-yt-wrap" style="display:none;"><iframe id="lb-yt" width="100%" height="400" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
       <div class="lb-title" id="lb-title" style="direction:rtl;text-align:right;unicode-bidi:plaintext;"></div>
