@@ -509,6 +509,13 @@ footer a:hover{color:var(--yellow);}
       </div>
     </div>
 
+    <div class="card" onclick="openLightbox(6)">
+      <img src="images/bakery1.png" alt="Bakery">
+      <div class="card-overlay">
+        <div class="card-name">בייקרי</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -529,6 +536,7 @@ footer a:hover{color:var(--yellow);}
     <div id="lb-image4-wrap" class="lb-img" style="display:none">
       <img id="lb-image4" src="" alt="" style="max-height:88vh;max-width:100%;object-fit:contain;">
     </div>
+    <div id="lb-yt-wrap" style="display:none;"><iframe id="lb-yt" width="100%" height="400" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
     <div class="lb-info">
       <div class="lb-tag" id="lb-tag"></div>
       <div class="lb-title" id="lb-title" style="direction:rtl;text-align:right;unicode-bidi:plaintext;"></div>
@@ -715,6 +723,13 @@ const works = [
     name: 'ODDPAWS',
     tag: '',
     desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
+  },
+  {
+    img: 'images/bakery1.png',
+    youtube: '0GFXH8wFGcw',
+    name: 'בייקרי',
+    tag: '',
+    desc: 'יש הרבה דגים בים? לא בטוח. וגם אם כן - זו תל אביב, לכי תדעי איזה דגים אלה.\nעזבי אותך מדגים, מאפה קינמון תמיד בא טוב.\n\nסרטון סושיאל לבייקרי.'
   }
 ];
 // ═══════════════════════════════
@@ -773,15 +788,25 @@ function openLightbox(i) {
   const slotCount = 1 + (w.img2?1:0) + (w.img3?1:0) + (w.img4?1:0) + 1;
   inner.style.gridTemplateColumns = `repeat(${Math.min(slotCount,5)}, 1fr)`;
 
+  // YouTube
+  const ytWrap = document.getElementById('lb-yt-wrap');
+  const ytFrame = document.getElementById('lb-yt');
+  if (w.youtube) {
+    ytWrap.style.display = 'block';
+    ytFrame.src = `https://www.youtube.com/embed/${w.youtube}?autoplay=0`;
+  } else {
+    ytWrap.style.display = 'none';
+    ytFrame.src = '';
+  }
+
   document.getElementById('lightbox').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
-  const vid = document.getElementById('lb-video');
-  vid.pause();
-  vid.src = '';
+  document.querySelectorAll('#lightbox video').forEach(v => { v.pause(); v.src = ''; });
+  document.getElementById('lb-yt').src = '';
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
