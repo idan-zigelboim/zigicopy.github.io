@@ -804,9 +804,10 @@ function openLightbox(i) {
     ytFrame.src = '';
   }
 
-  // Build media list
+  // Build media list - skip img if youtube exists (thumbnail only for card)
   const media = [];
-  ['img','img2','img3','img4','img5'].forEach(key => {
+  if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
+  ['img2','img3','img4','img5'].forEach(key => {
     if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4') });
   });
 
