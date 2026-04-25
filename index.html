@@ -396,6 +396,37 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   color:rgba(255,232,26,0.35);
 }
 
+
+/* CONTACT SECTION */
+.contact-section{
+  padding:80px 6%;
+  border-top:1px solid rgba(255,232,26,0.1);
+  visibility:hidden;
+  text-align:right;
+  direction:rtl;
+}
+.contact-section.main-content{visibility:hidden;}
+.contact-label{
+  font-family:'Oswald',sans-serif;
+  font-size:22px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:28px;
+  text-shadow:0 0 20px var(--glow);
+}
+.contact-email-row{
+  display:flex;align-items:center;gap:16px;
+}
+.contact-email-title{
+  font-family:'Oswald',sans-serif;font-size:16px;
+  letter-spacing:0.15em;color:rgba(255,232,26,0.5);
+}
+.contact-email-link{
+  font-family:'Oswald',sans-serif;font-size:22px;
+  color:var(--yellow);text-decoration:none;
+  letter-spacing:0.08em;
+  transition:opacity 0.2s;
+}
+.contact-email-link:hover{opacity:0.7;}
+
 /* MUSIC BTN */
 #music-btn{
   position:fixed;bottom:32px;right:32px;z-index:200;
@@ -474,7 +505,6 @@ footer a:hover{color:var(--yellow);}
 
 <!-- WORKS -->
 <section id="works" style="visibility:hidden" class="main-content">
-  <p class="works-label">Selected Work</p>
   <div class="cards-grid" id="cards-grid">
 
     <div class="card" onclick="openLightbox(0)">
@@ -554,6 +584,18 @@ footer a:hover{color:var(--yellow);}
     </div>
   </div>
 </div>
+
+<section class="contact-section main-content">
+  <p class="contact-label">המוצר מקולקל? דברו איתנו!</p>
+  <div class="contact-email-row">
+    <span class="contact-email-title">אימייל:</span>
+    <a class="contact-email-link" href="mailto:idan11223360@gmail.com">idan11223360@gmail.com</a>
+  </div>
+  <div class="contact-email-row" style="margin-top:16px;">
+    <span class="contact-email-title">יונה:</span> <span class="contact-email-link">לבקש את מספר</span>
+    <span class="contact-email-link">562</span>
+  </div>
+</section>
 
 <footer style="visibility:hidden" class="main-content">
   <span>© 2025 Idan Zigelboim</span>
@@ -659,6 +701,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         setTimeout(() => { crawlSection.style.opacity = '1'; }, 50);
         document.getElementById('crawl').style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
+        document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, 18000);
