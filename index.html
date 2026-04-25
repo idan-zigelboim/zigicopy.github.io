@@ -353,8 +353,8 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 .lb-images-row .lb-img{display:flex;align-items:center;justify-content:center;}
 .lb-images-row video{max-height:38vh;width:100%;}
-.lb-img{display:flex;align-items:center;justify-content:center;overflow:hidden;min-height:0;background:transparent;}
-.lb-img img{width:100%;height:100%;max-height:38vh;object-fit:contain;display:block;}
+.lb-img{display:flex;align-items:stretch;justify-content:center;overflow:hidden;background:transparent;}
+.lb-img img{width:100%;max-height:38vh;object-fit:contain;display:block;}
 
 .lb-media-col{width:100%;}
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(28px,3vw,48px);font-weight:700;color:var(--yellow);text-shadow:0 0 30px var(--glow);letter-spacing:0.06em;}
@@ -834,7 +834,7 @@ function openLightbox(i) {
       } else {
         const img = document.createElement('img');
         img.src = media[idx].src;
-        img.style.cssText = 'width:100%;max-height:28vh;object-fit:contain;cursor:zoom-in;';
+        img.style.cssText = 'width:100%;height:28vh;object-fit:cover;cursor:zoom-in;';
         img.addEventListener('click', () => openZoom(media, idx));
         el.appendChild(img);
       }
