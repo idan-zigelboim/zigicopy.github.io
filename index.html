@@ -736,7 +736,7 @@ const works = [
     img2: 'images/ariel2.jpg',
     name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים — אריאל',
     tag: '',
-    desc: 'פרינטים למסיר הכתמים של אריאל.'
+    desc: 'פרינטים / שלטי חוצות למסיר הכתמים של אריאל.'
   },
   {
     img: 'images/quattro1.png',
@@ -744,7 +744,7 @@ const works = [
     img3: 'images/quattro3.png',
     name: 'או שתנסו קוואטרו — אאודי',
     tag: '',
-    desc: 'פרינטים לדגמים בעלי מערכת "קוואטרו" של אאודי.'
+    desc: 'פרינטים / שלטי חוצות לדגמים בעלי מערכת "קוואטרו" של אאודי.'
   },
   {
     img: 'images/lemon1.png',
@@ -755,9 +755,10 @@ const works = [
   },
   {
     img: 'images/wolt1.png',
-    img2: 'videos/wolt2.mp4',
-    img3: 'images/wolt3.png',
-    img4: 'images/wolt4.png',
+    img2: 'videos/wolt5.mp4',
+    img3: 'videos/wolt2.mp4',
+    img4: 'images/wolt3.png',
+    img5: 'images/wolt4.png',
     video: null,
     name: 'וולט יום האישה (תן קרדיט קבל קרדיט)',
     tag: '',
@@ -844,12 +845,14 @@ function openLightbox(i) {
   // YouTube
   const ytWrap = document.getElementById('lb-yt-wrap');
   const ytFrame = document.getElementById('lb-yt');
-  if (w.youtube) {
-    ytWrap.style.display = 'block';
-    ytFrame.src = `https://www.youtube.com/embed/${w.youtube}?autoplay=0`;
-  } else {
-    ytWrap.style.display = 'none';
-    ytFrame.src = '';
+  if (ytWrap && ytFrame) {
+    if (w.youtube) {
+      ytWrap.style.display = 'block';
+      ytFrame.src = `https://www.youtube.com/embed/${w.youtube}?autoplay=0`;
+    } else {
+      ytWrap.style.display = 'none';
+      ytFrame.src = '';
+    }
   }
 
   document.getElementById('lightbox').classList.add('open');
@@ -859,7 +862,7 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
   document.querySelectorAll('#lightbox video').forEach(v => { v.pause(); v.src = ''; });
-  document.getElementById('lb-yt').src = '';
+  const yt = document.getElementById('lb-yt'); if(yt) yt.src = '';
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
