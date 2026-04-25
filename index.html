@@ -834,7 +834,7 @@ function openLightbox(i) {
       } else {
         const img = document.createElement('img');
         img.src = media[idx].src;
-        img.style.cssText = 'width:100%;height:20vh;object-fit:contain;cursor:zoom-in;';
+        img.style.cssText = 'width:100%;height:40vh;object-fit:contain;cursor:zoom-in;';
         img.addEventListener('click', () => openZoom(media, idx));
         el.appendChild(img);
       }
