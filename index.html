@@ -358,6 +358,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 
 .lb-media-col{width:100%;}
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
+
+/* אריאל בלבד */
+.lb-ariel{flex-direction:column !important;}
+.lb-ariel .lb-info{width:100% !important;min-width:0 !important;flex-direction:row-reverse;gap:32px;align-items:flex-start;}
+.lb-ariel .lb-media-col{width:100% !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:16px !important;}
+.lb-ariel .lb-img img{max-height:60vh !important;width:100% !important;object-fit:contain !important;}
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
 .lb-desc{font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
 .lb-close{
@@ -854,6 +860,14 @@ function openLightbox(i) {
   } else {
     mediaCol.style.display = 'flex';
     mediaCol.style.flexDirection = 'column';
+  }
+
+  // אריאל — layout ייחודי
+  const lbInner = document.getElementById('lb-inner');
+  if (i === 0) {
+    lbInner.classList.add('lb-ariel');
+  } else {
+    lbInner.classList.remove('lb-ariel');
   }
 
   document.getElementById('lightbox').classList.add('open');
