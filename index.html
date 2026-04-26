@@ -359,6 +359,11 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-media-col{width:100%;}
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
+/* וופל לימון בלבד */
+.lb-lemon{flex-direction:row-reverse !important;}
+.lb-lemon .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
+.lb-lemon .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:16px !important;}
+.lb-lemon .lb-img img{max-height:70vh !important;width:100% !important;object-fit:contain !important;}
 /* אאודי בלבד */
 .lb-audi{flex-direction:column !important;}
 .lb-audi .lb-info{width:100% !important;flex-direction:row-reverse !important;gap:32px !important;align-items:flex-start !important;}
@@ -879,6 +884,11 @@ function openLightbox(i) {
     lbInner.classList.add('lb-audi');
   } else {
     lbInner.classList.remove('lb-audi');
+  }
+  if (i === 2) {
+    lbInner.classList.add('lb-lemon');
+  } else {
+    lbInner.classList.remove('lb-lemon');
   }
 
   document.getElementById('lightbox').classList.add('open');
