@@ -359,6 +359,13 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-media-col{width:100%;}
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
+/* וולט בלבד */
+.lb-wolt{flex-direction:row-reverse !important;}
+.lb-wolt .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
+.lb-wolt .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:12px !important;direction:rtl !important;}
+.lb-wolt .lb-img img,
+.lb-wolt .lb-img video{width:100% !important;max-height:38vh !important;object-fit:contain !important;}
+
 /* וופל לימון בלבד */
 .lb-lemon{flex-direction:row-reverse !important;}
 .lb-lemon .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
@@ -776,10 +783,10 @@ const works = [
   },
   {
     img: 'images/wolt1.png',
-    img2: 'videos/wolt5.mp4',
-    img3: 'videos/wolt2.mp4',
-    img4: 'images/wolt3.png',
-    img5: 'images/wolt4.png',
+    img2: 'videos/wolt2.mp4',
+    img3: 'images/wolt3.png',
+    img4: 'images/wolt4.png',
+    img5: 'videos/wolt5.mp4',
     video: null,
     name: 'וולט יום האישה (תן קרדיט קבל קרדיט)',
     tag: '',
@@ -889,6 +896,11 @@ function openLightbox(i) {
     lbInner.classList.add('lb-lemon');
   } else {
     lbInner.classList.remove('lb-lemon');
+  }
+  if (i === 3) {
+    lbInner.classList.add('lb-wolt');
+  } else {
+    lbInner.classList.remove('lb-wolt');
   }
 
   document.getElementById('lightbox').classList.add('open');
