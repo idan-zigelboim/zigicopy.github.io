@@ -327,10 +327,10 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 @keyframes lbFade{from{opacity:0}to{opacity:1}}
 .lb-inner{
   display:flex;
-  flex-direction:row-reverse;
-  gap:24px;
+  flex-direction:column;
+  gap:20px;
   max-width:96vw;width:100%;
-  align-items:flex-start;
+  align-items:stretch;
   padding:16px;
 }
 .lb-info{
@@ -357,7 +357,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-img img{width:100%;max-height:38vh;object-fit:contain;display:block;}
 
 .lb-media-col{width:100%;}
-.lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
+.lb-title{font-family:'Oswald',sans-serif;font-size:clamp(20px,2.5vw,36px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;flex-shrink:0;}
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
 .lb-desc{font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
 .lb-close{
@@ -828,13 +828,13 @@ function openLightbox(i) {
       if (media[idx].isVideo) {
         const v = document.createElement('video');
         v.src = media[idx].src; v.controls = true;
-        v.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;';
+        v.style.cssText = 'width:100%;max-height:35vh;object-fit:contain;';
         v.addEventListener('click', () => openZoom(media, idx));
         el.appendChild(v);
       } else {
         const img = document.createElement('img');
         img.src = media[idx].src;
-        img.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;cursor:zoom-in;';
+        img.style.cssText = 'width:100%;max-height:35vh;object-fit:contain;cursor:zoom-in;display:block;';
         img.addEventListener('click', () => openZoom(media, idx));
         el.appendChild(img);
       }
