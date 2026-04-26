@@ -913,8 +913,8 @@ function renderZoom() {
     vid.style.display = 'none';
   }
   document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
-  document.getElementById('zoom-prev').style.opacity = zoomIdx > 0 ? '1' : '0.2';
-  document.getElementById('zoom-next').style.opacity = zoomIdx < zoomItems.length-1 ? '1' : '0.2';
+  document.getElementById('zoom-next').style.opacity = zoomIdx > 0 ? '1' : '0.2';
+  document.getElementById('zoom-prev').style.opacity = zoomIdx < zoomItems.length-1 ? '1' : '0.2';
 }
 
 function zoomNav(dir) {
@@ -947,10 +947,10 @@ document.addEventListener('keydown', e => {
 
 <div id="zoom-lb">
   <button id="zoom-close-btn" onclick="closeZoom()">✕</button>
-  <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(-1)">‹</div>
+  <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(1)">‹</div>
   <img id="zoom-img" src="" alt="">
   <video id="zoom-video" controls></video>
-  <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(1)">›</div>
+  <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(-1)">›</div></div>
   <div id="zoom-counter"></div>
 </div>
 </body>
