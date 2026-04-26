@@ -359,7 +359,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-media-col{width:100%;}
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
-/* אריאל בלבד */
+/* אאודי בלבד */
+.lb-audi{flex-direction:column !important;}
+.lb-audi .lb-info{width:100% !important;flex-direction:row-reverse !important;gap:32px !important;align-items:flex-start !important;}
+.lb-audi .lb-info .lb-text{flex:1 !important;}
+.lb-audi .lb-media-col{width:100% !important;display:grid !important;grid-template-columns:1fr 1fr 1fr !important;gap:16px !important;}
+.lb-audi .lb-img img{width:100% !important;max-height:55vh !important;object-fit:contain !important;}
 /* אריאל בלבד */
 .lb-ariel{flex-direction:row-reverse !important;}
 .lb-ariel .lb-info{width:300px !important;min-width:260px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
@@ -869,6 +874,11 @@ function openLightbox(i) {
     lbInner.classList.add('lb-ariel');
   } else {
     lbInner.classList.remove('lb-ariel');
+  }
+  if (i === 1) {
+    lbInner.classList.add('lb-audi');
+  } else {
+    lbInner.classList.remove('lb-audi');
   }
 
   document.getElementById('lightbox').classList.add('open');
