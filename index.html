@@ -359,6 +359,10 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-media-col{width:100%;}
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
+/* בייקרי בלבד */
+.lb-bakery{flex-direction:row-reverse !important;}
+.lb-bakery .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
+.lb-bakery #lb-yt-wrap{flex:1 !important;aspect-ratio:16/9 !important;max-height:70vh !important;}
 /* Odd Paws בלבד */
 .lb-oddpaws{flex-direction:row-reverse !important;}
 .lb-oddpaws .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
@@ -608,7 +612,7 @@ footer a:hover{color:var(--yellow);}
       <div class="lb-title" id="lb-title" style="direction:rtl;text-align:right;"></div>
       <div class="lb-desc" id="lb-desc" style="direction:rtl;text-align:right;margin-top:12px;"></div>
     </div>
-    <div id="lb-yt-wrap" style="display:none;width:100%;"><iframe id="lb-yt" width="100%" height="220" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
+    <div id="lb-yt-wrap" style="display:none;flex:1;aspect-ratio:16/9;max-height:70vh;"><iframe id="lb-yt" width="100%" height="100%" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen style="display:block;"></iframe></div>
     <div class="lb-media-col" id="lb-media-col">
       <div class="lb-img" id="lb-slot1"></div>
       <div class="lb-img" id="lb-slot2" style="display:none"></div>
@@ -912,6 +916,11 @@ function openLightbox(i) {
     lbInner.classList.add('lb-oddpaws');
   } else {
     lbInner.classList.remove('lb-oddpaws');
+  }
+  if (i === 6) {
+    lbInner.classList.add('lb-bakery');
+  } else {
+    lbInner.classList.remove('lb-bakery');
   }
 
   document.getElementById('lightbox').classList.add('open');
