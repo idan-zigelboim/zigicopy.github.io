@@ -360,9 +360,9 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
 /* בייקרי בלבד */
-.lb-bakery{flex-direction:row-reverse !important;}
+.lb-bakery{flex-direction:row-reverse !important;gap:40px !important;}
 .lb-bakery .lb-info{width:320px !important;min-width:280px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
-.lb-bakery #lb-yt-wrap{flex:1 !important;aspect-ratio:16/9 !important;max-height:80vh !important;margin-left:40px !important;}
+.lb-bakery #lb-yt-wrap{flex:none !important;width:42% !important;aspect-ratio:16/9 !important;max-height:80vh !important;margin-left:40px !important;margin-right:auto !important;}
 /* Odd Paws בלבד */
 .lb-oddpaws{flex-direction:row-reverse !important;}
 .lb-oddpaws .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
@@ -559,7 +559,7 @@ footer a:hover{color:var(--yellow);}
     </div>
 
     <div class="card" onclick="openLightbox(1)">
-      <img src="images/quattro1.png" alt="Audi Quattro">
+      <img src="images/audilogo.png" alt="Audi Quattro">
       <div class="card-overlay">
         <div class="card-name">אאודי קוואטרו</div>
       </div>
@@ -612,7 +612,7 @@ footer a:hover{color:var(--yellow);}
       <div class="lb-title" id="lb-title" style="direction:rtl;text-align:right;"></div>
       <div class="lb-desc" id="lb-desc" style="direction:rtl;text-align:right;margin-top:12px;"></div>
     </div>
-    <div id="lb-yt-wrap" style="display:none;flex:1;aspect-ratio:16/9;max-height:70vh;"><iframe id="lb-yt" width="100%" height="100%" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen style="display:block;"></iframe></div>
+    <div id="lb-yt-wrap" style="display:none;aspect-ratio:16/9;max-height:80vh;margin-right:80px;margin-left:80px;"><iframe id="lb-yt" width="100%" height="100%" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen style="display:block;"></iframe></div>
     <div class="lb-media-col" id="lb-media-col">
       <div class="lb-img" id="lb-slot1"></div>
       <div class="lb-img" id="lb-slot2" style="display:none"></div>
@@ -839,7 +839,8 @@ function openLightbox(i) {
   const ytWrap = document.getElementById('lb-yt-wrap');
   const ytFrame = document.getElementById('lb-yt');
   if (w.youtube) {
-    ytWrap.style.display = 'block';
+    ytWrap.style.display = 'flex';
+    ytWrap.style.flex = '';
     ytFrame.src = `https://www.youtube.com/embed/${w.youtube}?autoplay=0`;
   } else {
     ytWrap.style.display = 'none';
