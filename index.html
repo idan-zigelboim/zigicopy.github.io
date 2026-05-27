@@ -219,7 +219,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* INTRO SCREENS */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&family=Pathway+Gothic+One&display=swap');
 
-/* Screen 1 — "A long time ago" */
+/* Screen 1 - "A long time ago" */
 #intro{
   position:fixed;inset:0;z-index:5000;
   background:#0e1014;
@@ -254,7 +254,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 #intro-btn:hover{color:#5BC8E8;border-color:#5BC8E8;}
 
-/* Screen 2 — Logo zoom-out */
+/* Screen 2 - Logo zoom-out */
 #logo-screen{
   position:fixed;inset:0;z-index:4900;
   background:#000;
@@ -696,7 +696,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
     intro.style.display = 'none';
     logoScr.classList.add('active');
 
-    // Trigger logo animation — music starts exactly when logo appears
+    // Trigger logo animation - music starts exactly when logo appears
     setTimeout(() => {
       logo.classList.add('animate');
       const audio = document.getElementById('sw-audio');
@@ -771,12 +771,12 @@ btn.addEventListener('click', () => {
   }
 });
 
-// ═══ נתוני העבודות — ערוך כאן ═══
+// ═══ נתוני העבודות - ערוך כאן ═══
 const works = [
   {
     img: 'images/ariel2.jpg',
     img2: 'images/ariel1.jpg',
-    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים — אריאל',
+    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים - אריאל',
     tag: '',
     desc: 'פרינטים / שלטי חוצות למסיר הכתמים של אריאל.'
   },
@@ -784,14 +784,14 @@ const works = [
     img: 'images/quattro1.png',
     img2: 'images/quattro2.png',
     img3: 'images/quattro3.png',
-    name: 'או שתנסו קוואטרו — אאודי',
+    name: 'או שתנסו קוואטרו - אאודי',
     tag: '',
     desc: 'פרינטים / שלטי חוצות לדגמים בעלי מערכת "קוואטרו" של אאודי.'
   },
   {
     img: 'images/lemon1.png',
     img2: 'images/lemon2.png',
-    name: 'אין רגע לא נכון לוופל לימון — עלית',
+    name: 'אין רגע לא נכון לוופל לימון - עלית',
     tag: '',
     desc: 'פרינטים לוופל לימון של עלית.'
   },
@@ -809,16 +809,16 @@ const works = [
 
   {
     img: 'images/image3.png',
-    name: 'אימוץ כלבים מבוגרים — S.O.S',
+    name: 'אימוץ כלבים מבוגרים - S.O.S',
     tag: '',
-    desc: '<span style="unicode-bidi:embed;direction:ltr;display:inline-block;">Dogè</span> היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך <span style="direction:ltr;unicode-bidi:embed;">360</span> לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
+    desc: '<span style="unicode-bidi:embed;direction:ltr;display:inline-block;">Dogè</span> היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא - זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך <span style="direction:ltr;unicode-bidi:embed;">360</span> לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
   },
   {
     img: 'images/ODDPAWIMG.png',
     img2: 'videos/ODDPAWS.mp4',
     name: 'ODDPAWS',
     tag: '',
-    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
+    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני - וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
   },
   {
     img: 'images/bakery.png',
@@ -895,7 +895,7 @@ function openLightbox(i) {
     mediaCol.style.flexDirection = 'column';
   }
 
-  // אריאל — layout ייחודי
+  // אריאל - layout ייחודי
   const lbInner = document.getElementById('lb-inner');
   if (i === 0) {
     lbInner.classList.add('lb-ariel');
