@@ -8,6 +8,18 @@
 <style>
 
   @font-face {
+    font-family: 'MiriamLibre';
+    src: url('fonts/MiriamLibre-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'MiriamLibre';
+    src: url('fonts/MiriamLibre-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+
+
+  @font-face {
     font-family: 'StarJedi';
     src: url('fonts/Starjedi.ttf') format('truetype');
     font-weight: normal;
@@ -357,7 +369,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-img img{width:100%;max-height:38vh;object-fit:contain;display:block;}
 
 .lb-media-col{width:100%;}
-.lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
+.lb-title{font-family:'MiriamLibre','Oswald',sans-serif;font-weight:700;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
 /* בייקרי בלבד */
 .lb-bakery{flex-direction:row-reverse !important;gap:40px !important;}
@@ -393,7 +405,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-ariel .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:16px !important;}
 .lb-ariel .lb-img img{max-height:70vh !important;width:100% !important;object-fit:contain !important;}
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
-.lb-desc{font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
+.lb-desc{font-family:'MiriamLibre',sans-serif;font-weight:400;font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
 .lb-close{
   position:fixed;top:24px;right:24px;
   width:40px;height:40px;border-radius:50%;
