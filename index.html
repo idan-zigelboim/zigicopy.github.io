@@ -79,7 +79,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #crawl.paused{animation-play-state:paused;}
 
 @keyframes crawl{
-  0%  {transform:translateY(140vh);}
+  0%  {transform:translateY(200vh);}
   85% {opacity:1;}
   100%{transform:translateY(-120%);opacity:0;}
 }
@@ -741,7 +741,12 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlSection.style.visibility = 'visible';
         document.getElementById('stars').style.opacity = '1';
         setTimeout(() => { crawlSection.style.opacity = '1'; }, 50);
-        document.getElementById('crawl').style.animationPlayState = 'running';
+        const crawlEl2 = document.getElementById('crawl');
+        crawlEl2.style.animation = 'none';
+        crawlEl2.offsetHeight; // force reflow
+        crawlEl2.style.animation = 'crawl 34s linear forwards';
+        crawlEl2.style.transform = 'translateY(200vh)';
+        crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
         setTimeout(() => {
