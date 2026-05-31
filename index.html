@@ -54,23 +54,23 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   visibility:hidden;
   opacity:0;
   transition:opacity 1.2s ease;
-  height:72vh;overflow:hidden;
+  height:100vh;overflow:hidden;
   clip-path:inset(0);
   display:flex;flex-direction:column;align-items:center;
   /* perspective for the Star Wars tilt */
-  perspective:350px;
+  perspective:500px;
   perspective-origin:50% 100%;
 }
 
 /* top fade */
 #crawl-section::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:35%;
+  content:'';position:absolute;top:0;left:0;right:0;height:20%;
   background:linear-gradient(to bottom,#000 30%,transparent);
   z-index:20;pointer-events:none;
 }
 /* bottom fade */
 #crawl-section::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:20%;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:12%;
   background:linear-gradient(to top,#000 30%,transparent);
   z-index:20;pointer-events:none;
 }
