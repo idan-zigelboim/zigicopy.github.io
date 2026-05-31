@@ -83,16 +83,16 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 34s linear forwards;
+  animation:crawl 48s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
 #crawl.paused{animation-play-state:paused;}
 
 @keyframes crawl{
-  0%  {transform:translateY(200vh);}
+  0%  {transform:translateY(var(--crawl-start, 300vh));}
   85% {opacity:1;}
-  100%{transform:translateY(-120%);opacity:0;}
+  100%{transform:translateY(-100%);opacity:0;}
 }
 
 .crawl-logo{font-family:'StarJedi','Oswald',sans-serif;font-weight:700;
@@ -536,17 +536,26 @@ footer a:hover{color:var(--yellow);}
         <p>
           אני עידן, בן 22, למדתי בבצפר בקורס קריאייטיב 4.<br>
           התחלתי את הקורס בציפייה לעבוד בתחום ומא-<br>
-          דקה זה מהיר מדי.<br>
-          לא ללכת, אני שניה מסדר את זה.<br>
-          هكذا؟ لا، هذا لا ينجح.<br>
-          BU SUSV AKU CDCX NV GRCH, GFAHU?<br>
+          דקה, זה מהיר מדי.<br>
+          למה מלכתחילה לעשות בפורמט הזה?<br>
+          תמיד להתחכם, תמיד.<br>
+          רבאק.<br>
+          לא ללכת, אני שנייה מסדר את זה.<br>
+          יש אה… אמורה להיות מהירות…<br>
+          <span style="color:#4DAAFF;">שניה אז זה צבע.</span><br>
+          <span style="font-size:1.25em;">וזה גודל, נכון? כן כן.</span><br>
+          אז אולי ככ- מה?<br>
+          מה??<br>
+          מה אבא מה???<br>
+          אני שעה עונה לך!<br>
+          לא, לא בא לי מלון, אני רגע עושה משהו.<br>
           לא חשוב, לא עובד.<br>
           העבודות למטה, נדבר פנים אל פנים גם ככה.<br>
+          <br>
           *ואם את/ה תוהה איך אני נראה -<br>
           כנס/י לסרטון שערכתי בעבודה למשביר,<br>
-          בשניה 00:51 אני מאחורה מחזיק גרביים ומגרד באף.<br>
-          <br>
-          שלושה ניחושים במה בהיתי שם.
+          בשנייה 00:51 אני מאחורה מחזיק גרביים ומגרד באף.<br>
+          שלושה ניחושים במה בהיתי.
         </p>
       </div>
 
@@ -748,16 +757,23 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         document.getElementById('stars').style.opacity = '1';
         setTimeout(() => { crawlSection.style.opacity = '1'; }, 50);
         const crawlEl2 = document.getElementById('crawl');
+        const contentH = crawlEl2.scrollHeight;
+        const sectionH = crawlSection.offsetHeight || window.innerHeight * 0.72;
+        // Start: text just below the section fold (no excess black)
+        crawlEl2.style.setProperty('--crawl-start', contentH + 'px');
         crawlEl2.style.animation = 'none';
         crawlEl2.offsetHeight; // force reflow
-        crawlEl2.style.animation = 'crawl 34s linear forwards';
-        crawlEl2.style.transform = 'translateY(200vh)';
+        // No delay - text starts rising immediately
+        crawlEl2.style.animation = 'crawl 48s linear both';
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
+        // Dynamic: show portfolio title when last sentence reaches middle of screen
+        const P_title = (contentH + sectionH / 2) / (2 * contentH);
+        const titleDelay = Math.round(P_title * 48 * 1000);
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
-        }, 18000);
+        }, titleDelay);
       }, 100);
     }, 5000);
 
