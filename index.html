@@ -70,7 +70,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 /* bottom fade */
 #crawl-section::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:12%;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:5%;
   background:linear-gradient(to top,#000 30%,transparent);
   z-index:20;pointer-events:none;
 }
@@ -83,7 +83,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 48s linear forwards;
+  animation:crawl 65s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
@@ -764,13 +764,13 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlEl2.style.animation = 'none';
         crawlEl2.offsetHeight; // force reflow
         // No delay - text starts rising immediately
-        crawlEl2.style.animation = 'crawl 48s linear both';
+        crawlEl2.style.animation = 'crawl 65s linear -2s both';
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.round(P_title * 48 * 1000);
+        const titleDelay = Math.round((P_title * 65 - 2) * 1000);
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, titleDelay);
