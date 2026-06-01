@@ -825,9 +825,11 @@ const works = [
   {
     img: 'images/wolt1.png',
     img2: 'videos/wolt2.mp4',
+    img2poster: 'images/wolt3.png',
     img3: 'images/wolt3.png',
     img4: 'images/wolt4.png',
     img5: 'videos/wolt5.mp4',
+    img5poster: 'images/wolt1.png',
     video: null,
     name: 'וולט יום האישה (תן קרדיט קבל קרדיט)',
     tag: '',
@@ -882,7 +884,7 @@ function openLightbox(i) {
   const media = [];
   if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
   ['img2','img3','img4','img5'].forEach(key => {
-    if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4') });
+    if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), poster: w[key+'poster'] || null });
   });
 
   const slotIds = ['lb-slot1','lb-slot2','lb-slot3','lb-slot4','lb-slot5'];
@@ -901,6 +903,7 @@ function openLightbox(i) {
       } else if (media[idx].isVideo) {
         const v = document.createElement('video');
         v.src = media[idx].src; v.controls = true; v.preload = 'none';
+        if (media[idx].poster) v.poster = media[idx].poster;
         v.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;display:block;';
         const vWrap = document.createElement('div');
         vWrap.style.cssText = 'position:relative;width:100%;cursor:zoom-in;';
