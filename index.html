@@ -902,7 +902,11 @@ function openLightbox(i) {
         const v = document.createElement('video');
         v.src = media[idx].src; v.controls = true;
         v.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;';
-        v.addEventListener('click', () => openZoom(media, idx));
+        v.addEventListener('click', () => {
+          const t = v.currentTime;
+          v.pause();
+          openZoom(media, idx, t);
+        });
         el.appendChild(v);
       } else {
         const img = document.createElement('img');
@@ -981,9 +985,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 let zoomItems = [];
 let zoomIdx = 0;
 
-function openZoom(items, idx) {
+let zoomStartTime = 0;
+
+function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
+  zoomStartTime = startTime;
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -997,6 +1004,9 @@ function renderZoom() {
     vid.src = item.src;
     vid.style.display = 'block';
     img.style.display = 'none';
+    vid.currentTime = zoomStartTime;
+    zoomStartTime = 0;
+    vid.play().catch(() => {});
   } else {
     img.src = item.src;
     img.style.display = 'block';
