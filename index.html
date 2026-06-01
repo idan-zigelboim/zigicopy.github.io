@@ -969,7 +969,7 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
   document.querySelectorAll('#lightbox video').forEach(v => { v.pause(); v.src = ''; });
-  const yt = document.getElementById('lb-yt'); if(yt) yt.src = '';
+  document.querySelectorAll('#lightbox iframe').forEach(f => { f.src = ''; });
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
