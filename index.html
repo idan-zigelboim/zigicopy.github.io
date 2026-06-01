@@ -6,6 +6,17 @@
 <title>Idan Zigelboim</title>
 <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'MiriamLibre';
+    src: url('fonts/MiriamLibre-Bold.ttf') format('truetype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'MiriamLibre';
+    src: url('fonts/MiriamLibre-Regular.ttf') format('truetype');
+    font-weight: 400;
+  }
+
 
   @font-face {
     font-family: 'StarJedi';
@@ -43,23 +54,23 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   visibility:hidden;
   opacity:0;
   transition:opacity 1.2s ease;
-  height:72vh;overflow:hidden;
+  height:100vh;overflow:hidden;
   clip-path:inset(0);
   display:flex;flex-direction:column;align-items:center;
   /* perspective for the Star Wars tilt */
-  perspective:350px;
+  perspective:500px;
   perspective-origin:50% 100%;
 }
 
 /* top fade */
 #crawl-section::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:35%;
+  content:'';position:absolute;top:0;left:0;right:0;height:20%;
   background:linear-gradient(to bottom,#000 30%,transparent);
   z-index:20;pointer-events:none;
 }
 /* bottom fade */
 #crawl-section::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:20%;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:5%;
   background:linear-gradient(to top,#000 30%,transparent);
   z-index:20;pointer-events:none;
 }
@@ -72,16 +83,16 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 34s linear forwards;
+  animation:crawl 65s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
 #crawl.paused{animation-play-state:paused;}
 
 @keyframes crawl{
-  0%  {transform:translateY(140vh);}
+  0%  {transform:translateY(var(--crawl-start, 300vh));}
   85% {opacity:1;}
-  100%{transform:translateY(-120%);opacity:0;}
+  100%{transform:translateY(-100%);opacity:0;}
 }
 
 .crawl-logo{font-family:'StarJedi','Oswald',sans-serif;font-weight:700;
@@ -130,7 +141,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* PORTFOLIO TITLE */
 #portfolio-title{
   position:relative;z-index:10;
-  padding:0;margin-top:-40px;
+  padding:0;margin-top:calc(-28vh - 40px);
   display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
   gap:32px;
   opacity:0;
@@ -149,7 +160,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   text-shadow:none;
   text-align:center;
 }
-#portfolio-title .scroll-cta{
+#portfolio-title .scroll-cta{font-family:'MiriamLibre',sans-serif;font-weight:400;
   font-family:'Oswald',sans-serif;font-weight:300;
   font-size:clamp(16px,2vw,26px);
   letter-spacing:0.3em;text-transform:uppercase;
@@ -219,7 +230,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* INTRO SCREENS */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&family=Pathway+Gothic+One&display=swap');
 
-/* Screen 1 — "A long time ago" */
+/* Screen 1 - "A long time ago" */
 #intro{
   position:fixed;inset:0;z-index:5000;
   background:#0e1014;
@@ -254,7 +265,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 #intro-btn:hover{color:#5BC8E8;border-color:#5BC8E8;}
 
-/* Screen 2 — Logo zoom-out */
+/* Screen 2 - Logo zoom-out */
 #logo-screen{
   position:fixed;inset:0;z-index:4900;
   background:#000;
@@ -313,7 +324,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   padding:24px;opacity:0;transition:opacity 0.3s;
 }
 .card:hover .card-overlay{opacity:1;}
-.card-name{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--yellow);letter-spacing:0.06em;}
+.card-name{font-family:'MiriamLibre','Oswald',sans-serif;font-weight:700;font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--yellow);letter-spacing:0.06em;}
 .card-tag{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,232,26,0.5);margin-top:6px;}
 
 /* LIGHTBOX */
@@ -357,7 +368,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-img img{width:100%;max-height:38vh;object-fit:contain;display:block;}
 
 .lb-media-col{width:100%;}
-.lb-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
+.lb-title{font-family:'MiriamLibre','Oswald',sans-serif;font-weight:700;font-size:clamp(18px,2vw,28px);font-weight:700;color:var(--yellow);text-shadow:0 0 20px var(--glow);letter-spacing:0.04em;}
 
 /* בייקרי בלבד */
 .lb-bakery{flex-direction:row-reverse !important;gap:40px !important;}
@@ -368,7 +379,8 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-oddpaws .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
 .lb-oddpaws .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:16px !important;}
 .lb-oddpaws .lb-img img,
-.lb-oddpaws .lb-img video{max-height:70vh !important;width:100% !important;object-fit:contain !important;}
+.lb-oddpaws .lb-img video,
+.lb-oddpaws .lb-img iframe{max-height:70vh !important;width:100% !important;object-fit:contain !important;min-height:300px !important;aspect-ratio:16/9 !important;border:none !important;}
 /* וולט בלבד */
 .lb-wolt{flex-direction:row-reverse !important;}
 .lb-wolt .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
@@ -393,7 +405,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-ariel .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:16px !important;}
 .lb-ariel .lb-img img{max-height:70vh !important;width:100% !important;object-fit:contain !important;}
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
-.lb-desc{font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
+.lb-desc{font-family:'MiriamLibre',sans-serif;font-weight:400;font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
 .lb-close{
   position:fixed;top:24px;right:24px;
   width:40px;height:40px;border-radius:50%;
@@ -434,17 +446,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   cursor:pointer;transition:all 0.2s;
 }
 #zoom-close-btn:hover{background:rgba(255,232,26,0.1);border-color:var(--yellow);}
-#zoom-counter{
-  position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
-  font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:0.2em;
-  color:rgba(255,232,26,0.35);
-}
+#zoom-counter{display:none;}
 
 
 /* CONTACT SECTION */
 .contact-section{
   padding:80px 6%;
-  border-top:1px solid rgba(255,232,26,0.1);
   visibility:hidden;
   text-align:right;
   direction:rtl;
@@ -489,7 +496,6 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 footer{
   position:relative;z-index:10;
   padding:28px 10%;
-  border-top:1px solid rgba(255,232,26,0.08);
   display:flex;justify-content:space-between;
   font-family:'Oswald',sans-serif;font-size:11px;
   letter-spacing:0.18em;text-transform:uppercase;
@@ -530,13 +536,26 @@ footer a:hover{color:var(--yellow);}
         <p>
           אני עידן, בן 22, למדתי בבצפר בקורס קריאייטיב 4.<br>
           התחלתי את הקורס בציפייה לעבוד בתחום ומא-<br>
-          נו מה זה מהיר מדי.<br>
-          רבאק עם הפורמט המסריח הזה.<br>
-          רגע שניה, איך אני משנה מהירות?<br>
-          هكذا؟ لا، هذا لا ينجح.<br>
-          BU SUSV AKU CDCX NV GRCH, GFAHU?<br>
+          דקה, זה מהיר מדי.<br>
+          למה מלכתחילה לעשות בפורמט הזה?<br>
+          תמיד להתחכם, תמיד.<br>
+          רבאק.<br>
+          לא ללכת, אני שנייה מסדר את זה.<br>
+          יש אה… אמורה להיות מהירות…<br>
+          <span style="color:#4DAAFF;">שניה אז זה צבע.</span><br>
+          <span style="font-size:1.25em;">וזה גודל, נכון? כן כן.</span><br>
+          אז אולי ככ- מה?<br>
+          מה??<br>
+          מה אבא מה???<br>
+          אני שעה עונה לך!<br>
+          לא, לא בא לי מלון, אני רגע עושה משהו.<br>
           לא חשוב, לא עובד.<br>
-          העבודות למטה, נדבר פנים אל פנים גם ככה.
+          העבודות למטה, נדבר פנים אל פנים גם ככה.<br>
+          <br>
+          *ואם את/ה תוהה איך אני נראה -<br>
+          כנס/י לסרטון שערכתי בעבודה למשביר,<br>
+          בשנייה 00:51 אני מאחורה מחזיק גרביים ומגרד באף.<br>
+          שלושה ניחושים במה בהיתי.
         </p>
       </div>
 
@@ -573,7 +592,7 @@ footer a:hover{color:var(--yellow);}
     </div>
 
     <div class="card" onclick="openLightbox(3)">
-      <img src="images/wolt1.png" alt="Wolt">
+      <img src="images/Woltlogo.png" alt="Wolt">
       <div class="card-overlay">
         <div class="card-name">וולט (יום האישה במקאן)</div>
       </div>
@@ -581,9 +600,9 @@ footer a:hover{color:var(--yellow);}
 
 
     <div class="card" onclick="openLightbox(4)">
-      <img src="images/image3.png" alt="Work">
+      <img src="images/mashbirlogo.png" alt="המשביר">
       <div class="card-overlay">
-        <div class="card-name">אימוץ כלבים מבוגרים (Dogè) - S.O.S</div>
+        <div class="card-name">עבודת גמר - המשביר לצרכן</div>
       </div>
     </div>
 
@@ -636,7 +655,7 @@ footer a:hover{color:var(--yellow);}
 </section>
 
 <footer style="visibility:hidden" class="main-content">
-  <span>© 2025 Idan Zigelboim</span>
+  <span>© 2026 Idan Zigelboim</span>
 </footer>
 
 <button id="music-btn" title="Toggle music">♪</button>
@@ -692,7 +711,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
     intro.style.display = 'none';
     logoScr.classList.add('active');
 
-    // Trigger logo animation — music starts exactly when logo appears
+    // Trigger logo animation - music starts exactly when logo appears
     setTimeout(() => {
       logo.classList.add('animate');
       const audio = document.getElementById('sw-audio');
@@ -737,12 +756,24 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlSection.style.visibility = 'visible';
         document.getElementById('stars').style.opacity = '1';
         setTimeout(() => { crawlSection.style.opacity = '1'; }, 50);
-        document.getElementById('crawl').style.animationPlayState = 'running';
+        const crawlEl2 = document.getElementById('crawl');
+        const contentH = crawlEl2.scrollHeight;
+        const sectionH = crawlSection.offsetHeight || window.innerHeight * 0.72;
+        // Start: text just below the section fold (no excess black)
+        crawlEl2.style.setProperty('--crawl-start', contentH + 'px');
+        crawlEl2.style.animation = 'none';
+        crawlEl2.offsetHeight; // force reflow
+        // No delay - text starts rising immediately
+        crawlEl2.style.animation = 'crawl 65s linear -2s both';
+        crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
+        // Dynamic: show portfolio title when last sentence reaches middle of screen
+        const P_title = (contentH + sectionH / 2) / (2 * contentH);
+        const titleDelay = Math.round((P_title * 65 - 2) * 1000);
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
-        }, 18000);
+        }, titleDelay);
       }, 100);
     }, 5000);
 
@@ -767,12 +798,12 @@ btn.addEventListener('click', () => {
   }
 });
 
-// ═══ נתוני העבודות — ערוך כאן ═══
+// ═══ נתוני העבודות - ערוך כאן ═══
 const works = [
   {
     img: 'images/ariel2.jpg',
     img2: 'images/ariel1.jpg',
-    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים — אריאל',
+    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים - אריאל',
     tag: '',
     desc: 'פרינטים / שלטי חוצות למסיר הכתמים של אריאל.'
   },
@@ -780,14 +811,14 @@ const works = [
     img: 'images/quattro1.png',
     img2: 'images/quattro2.png',
     img3: 'images/quattro3.png',
-    name: 'או שתנסו קוואטרו — אאודי',
+    name: 'או שתנסו קוואטרו - אאודי',
     tag: '',
     desc: 'פרינטים / שלטי חוצות לדגמים בעלי מערכת "קוואטרו" של אאודי.'
   },
   {
     img: 'images/lemon1.png',
     img2: 'images/lemon2.png',
-    name: 'אין רגע לא נכון לוופל לימון — עלית',
+    name: 'אין רגע לא נכון לוופל לימון - עלית',
     tag: '',
     desc: 'פרינטים לוופל לימון של עלית.'
   },
@@ -804,17 +835,17 @@ const works = [
   },
 
   {
-    img: 'images/image3.png',
-    name: 'אימוץ כלבים מבוגרים — S.O.S',
+    img: 'images/mashbirlogo.png',
+    name: 'עבודת גמר - המשביר לצרכן',
     tag: '',
-    desc: '<span style="unicode-bidi:embed;direction:ltr;display:inline-block;">Dogè</span> היא חברת טיפוח שהבטיחה להחזיר לכלבים מבוגרים את הנעורים. העניין הוא — זה לא עובד, וגם לא יעבוד.\n\nאי אפשר להצעיר אותם. אבל זו לא סיבה לגזור עליהם כלוב.\n\nמהלך <span style="direction:ltr;unicode-bidi:embed;">360</span> לעמותת S.O.S, בנושא אימוץ כלבים מבוגרים.'
+    desc: 'בינינו, גיפט קארד זה לא בדיוק המתנה שרוצים לקבל...\n\nקמפיין <span dir=\"ltr\" style=\"display:inline-block;\">360</span> למשביר שמחזיר את המתנות הפיזיות למרכז העניינים וממצב את המשביר כבית של המתנות.\n\nקמפיין שהוא כולו אנטי גיפט קארד ומציג איך מתנה שנראית כמו פתרון קל, הופכת בפועל לנטל: המקבל צריך לזכור לממש, להגיע לחנות, לבחור לעצמו, ולפעמים גם להוסיף כסף בדרך. ושלא נתחיל לדבר על העניין הרגשי...\n\n* קמפיין די ארוך לפניכם, מומלץ להיכנס לתמונה הימנית ומשם לגלול בעזרת החצים'
   },
   {
     img: 'images/ODDPAWIMG.png',
-    img2: 'videos/ODDPAWS.mp4',
+    img2: 'https://www.youtube.com/embed/WzjI0k9adQQ',
     name: 'ODDPAWS',
     tag: '',
-    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני — וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
+    desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני - וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
   },
   {
     img: 'images/bakery.png',
@@ -860,11 +891,22 @@ function openLightbox(i) {
     if (!el) return;
     el.innerHTML = '';
     if (media[idx]) {
-      if (media[idx].isVideo) {
+      if (media[idx].src && media[idx].src.includes('youtube.com/embed')) {
+        const iframe = document.createElement('iframe');
+        iframe.src = media[idx].src;
+        iframe.style.cssText = 'width:100%;aspect-ratio:16/9;min-height:220px;border:none;';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.setAttribute('allow', 'autoplay;encrypted-media');
+        el.appendChild(iframe);
+      } else if (media[idx].isVideo) {
         const v = document.createElement('video');
         v.src = media[idx].src; v.controls = true; v.preload = 'none';
         v.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;';
-        v.addEventListener('click', () => openZoom(media, idx));
+        v.addEventListener('click', () => {
+          const t = v.currentTime;
+          v.pause();
+          openZoom(media, idx, t);
+        });
         el.appendChild(v);
       } else {
         const img = document.createElement('img');
@@ -891,7 +933,7 @@ function openLightbox(i) {
     mediaCol.style.flexDirection = 'column';
   }
 
-  // אריאל — layout ייחודי
+  // אריאל - layout ייחודי
   const lbInner = document.getElementById('lb-inner');
   if (i === 0) {
     lbInner.classList.add('lb-ariel');
@@ -931,7 +973,7 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
   document.body.style.overflow = '';
   document.querySelectorAll('#lightbox video').forEach(v => { v.pause(); v.src = ''; });
-  const yt = document.getElementById('lb-yt'); if(yt) yt.src = '';
+  document.querySelectorAll('#lightbox iframe').forEach(f => { f.src = ''; });
 }
 document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
@@ -943,9 +985,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 let zoomItems = [];
 let zoomIdx = 0;
 
-function openZoom(items, idx) {
+let zoomStartTime = 0;
+
+function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
+  zoomStartTime = startTime;
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -959,6 +1004,9 @@ function renderZoom() {
     vid.src = item.src;
     vid.style.display = 'block';
     img.style.display = 'none';
+    vid.currentTime = zoomStartTime;
+    zoomStartTime = 0;
+    vid.play().catch(() => {});
   } else {
     img.src = item.src;
     img.style.display = 'block';
