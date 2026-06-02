@@ -1015,6 +1015,7 @@ function renderZoom() {
     vid.src = item.src;
     vid.style.display = 'block';
     img.style.display = 'none';
+    yt.src = ''; yt.style.display = 'none';
     vid.currentTime = zoomStartTime;
     zoomStartTime = 0;
     vid.play().catch(() => {});
@@ -1023,6 +1024,7 @@ function renderZoom() {
     img.style.display = 'block';
     vid.pause(); vid.src = '';
     vid.style.display = 'none';
+    yt.src = ''; yt.style.display = 'none';
   }
   document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
   document.getElementById('zoom-next').style.opacity = zoomIdx > 0 ? '1' : '0.2';
