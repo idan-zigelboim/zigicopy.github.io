@@ -1005,7 +1005,13 @@ function renderZoom() {
   const item = zoomItems[zoomIdx];
   const img = document.getElementById('zoom-img');
   const vid = document.getElementById('zoom-video');
-  if (item.isVideo) {
+  const yt = document.getElementById('zoom-yt');
+  if (item.src && item.src.includes('youtube.com/embed')) {
+    yt.src = item.src;
+    yt.style.display = 'block';
+    img.style.display = 'none';
+    vid.pause(); vid.src = ''; vid.style.display = 'none';
+  } else if (item.isVideo) {
     vid.src = item.src;
     vid.style.display = 'block';
     img.style.display = 'none';
@@ -1033,6 +1039,7 @@ function closeZoom() {
   document.body.style.overflow = '';
   const v = document.getElementById('zoom-video');
   v.pause(); v.src = '';
+  document.getElementById('zoom-yt').src = '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1056,6 +1063,7 @@ document.addEventListener('keydown', e => {
   <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(1)">‹</div>
   <img id="zoom-img" src="" alt="">
   <video id="zoom-video" controls></video>
+  <iframe id="zoom-yt" src="" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen style="display:none;width:88vw;max-width:1200px;aspect-ratio:16/9;border:none;"></iframe>
   <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(-1)">›</div></div>
   <div id="zoom-counter"></div>
 </div>
