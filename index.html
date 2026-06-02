@@ -844,7 +844,7 @@ const works = [
   },
   {
     img: 'images/ODDPAWIMG.png',
-    img2: 'https://www.youtube.com/embed/WzjI0k9adQQ',
+    img2: 'https://www.youtube.com/embed/WzjI0k9adQQ?enablejsapi=1',
     name: 'ODDPAWS',
     tag: '',
     desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני - וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
@@ -996,9 +996,11 @@ function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
   zoomStartTime = startTime;
-  // עצור את הסרטון הקטן
+  document.querySelectorAll('#lightbox iframe').forEach(f => {
+    f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+  });
   const lbYt = document.getElementById('lb-yt');
-  if (lbYt) { const s = lbYt.src; lbYt.src = ''; lbYt.src = s; }
+  if (lbYt) lbYt.src = '';
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
   document.body.style.overflow = 'hidden';
