@@ -996,6 +996,9 @@ function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
   zoomStartTime = startTime;
+  // עצור את הסרטון הקטן
+  const lbYt = document.getElementById('lb-yt');
+  if (lbYt) { const s = lbYt.src; lbYt.src = ''; lbYt.src = s; }
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
   document.body.style.overflow = 'hidden';
