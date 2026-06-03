@@ -408,13 +408,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-desc{font-family:'MiriamLibre',sans-serif;font-weight:400;font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
 .lb-close{
   position:fixed;top:24px;right:24px;
-  width:52px;height:52px;border-radius:50%;
-  background:transparent;border:2px solid rgba(255,232,26,0.6);
-  color:var(--yellow);font-size:24px;cursor:pointer;
+  background:transparent;border:none;
+  color:var(--yellow);font-size:22px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   transition:all 0.2s;z-index:2001;
 }
-.lb-close:hover{background:rgba(255,232,26,0.1);border-color:var(--yellow);}
+.lb-close:hover{background:transparent;}
 
 
 /* ZOOM */
@@ -439,13 +438,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #zoom-next{right:20px;}
 #zoom-close-btn{
   position:absolute;top:20px;right:20px;
-  background:transparent;border:2px solid rgba(255,232,26,0.6);
-  color:var(--yellow);font-size:24px;
-  width:52px;height:52px;border-radius:50%;
+  background:transparent;border:none;
+  color:var(--yellow);font-size:22px;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;transition:all 0.2s;
 }
-#zoom-close-btn:hover{background:rgba(255,232,26,0.1);border-color:var(--yellow);}
+#zoom-close-btn:hover{background:transparent;}
 #zoom-counter{display:none;}
 
 
@@ -825,11 +823,9 @@ const works = [
   {
     img: 'images/wolt1.png',
     img2: 'videos/wolt2.mp4',
-    img2poster: 'images/wolt3.png',
     img3: 'images/wolt3.png',
     img4: 'images/wolt4.png',
     img5: 'videos/wolt5.mp4',
-    img5poster: 'images/wolt1.png',
     video: null,
     name: 'וולט יום האישה (תן קרדיט קבל קרדיט)',
     tag: '',
@@ -844,7 +840,7 @@ const works = [
   },
   {
     img: 'images/ODDPAWIMG.png',
-    img2: 'https://www.youtube.com/embed/WzjI0k9adQQ?enablejsapi=1',
+    img2: 'https://www.youtube.com/embed/WzjI0k9adQQ',
     name: 'ODDPAWS',
     tag: '',
     desc: 'עבודה שנעשתה בסדנת בינה מלאכותית לעסק לא אמיתי, פיקטיבי, מומצא, דמיוני - וחבל שכך.\n\nפנסיון לזוחלים בשם ‪ODDPAWS‬.'
@@ -884,7 +880,7 @@ function openLightbox(i) {
   const media = [];
   if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
   ['img2','img3','img4','img5'].forEach(key => {
-    if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), poster: w[key+'poster'] || null });
+    if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4') });
   });
 
   const slotIds = ['lb-slot1','lb-slot2','lb-slot3','lb-slot4','lb-slot5'];
@@ -902,17 +898,14 @@ function openLightbox(i) {
         el.appendChild(iframe);
       } else if (media[idx].isVideo) {
         const v = document.createElement('video');
-        v.src = media[idx].src; v.controls = true; v.preload = 'none';
-        if (media[idx].poster) v.poster = media[idx].poster;
-        v.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;display:block;';
-        const vWrap = document.createElement('div');
-        vWrap.style.cssText = 'position:relative;width:100%;cursor:zoom-in;';
-        const overlay = document.createElement('div');
-        overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;';
-        overlay.addEventListener('click', () => openZoom(media, idx));
-        vWrap.appendChild(v);
-        vWrap.appendChild(overlay);
-        el.appendChild(vWrap);
+        v.src = media[idx].src; v.controls = true;
+        v.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;';
+        v.addEventListener('click', () => {
+          const t = v.currentTime;
+          v.pause();
+          openZoom(media, idx, t);
+        });
+        el.appendChild(v);
       } else {
         const img = document.createElement('img');
         img.src = media[idx].src;
@@ -996,11 +989,6 @@ function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
   zoomStartTime = startTime;
-  document.querySelectorAll('#lightbox iframe').forEach(f => {
-    f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-  });
-  const lbYt = document.getElementById('lb-yt');
-  if (lbYt) lbYt.src = '';
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1010,17 +998,10 @@ function renderZoom() {
   const item = zoomItems[zoomIdx];
   const img = document.getElementById('zoom-img');
   const vid = document.getElementById('zoom-video');
-  const yt = document.getElementById('zoom-yt');
-  if (item.src && item.src.includes('youtube.com/embed')) {
-    yt.src = item.src;
-    yt.style.display = 'block';
-    img.style.display = 'none';
-    vid.pause(); vid.src = ''; vid.style.display = 'none';
-  } else if (item.isVideo) {
+  if (item.isVideo) {
     vid.src = item.src;
     vid.style.display = 'block';
     img.style.display = 'none';
-    yt.src = ''; yt.style.display = 'none';
     vid.currentTime = zoomStartTime;
     zoomStartTime = 0;
     vid.play().catch(() => {});
@@ -1029,7 +1010,6 @@ function renderZoom() {
     img.style.display = 'block';
     vid.pause(); vid.src = '';
     vid.style.display = 'none';
-    yt.src = ''; yt.style.display = 'none';
   }
   document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
   document.getElementById('zoom-next').style.opacity = zoomIdx > 0 ? '1' : '0.2';
@@ -1046,7 +1026,6 @@ function closeZoom() {
   document.body.style.overflow = '';
   const v = document.getElementById('zoom-video');
   v.pause(); v.src = '';
-  document.getElementById('zoom-yt').src = '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1070,7 +1049,6 @@ document.addEventListener('keydown', e => {
   <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(1)">‹</div>
   <img id="zoom-img" src="" alt="">
   <video id="zoom-video" controls></video>
-  <iframe id="zoom-yt" src="" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen style="display:none;width:88vw;max-width:1200px;aspect-ratio:16/9;border:none;"></iframe>
   <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(-1)">›</div></div>
   <div id="zoom-counter"></div>
 </div>
