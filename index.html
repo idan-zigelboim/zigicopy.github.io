@@ -938,7 +938,7 @@ function openLightbox(i) {
 
   // Grid layout
   const mediaCol = document.getElementById('lb-media-col');
-  if (media.length > 1) {
+  if (media.length > 1 && i !== 3) {
     mediaCol.style.display = 'grid';
     mediaCol.style.gridTemplateColumns = '1fr 1fr';
     mediaCol.style.gap = '12px';
@@ -946,6 +946,7 @@ function openLightbox(i) {
   } else {
     mediaCol.style.display = 'flex';
     mediaCol.style.flexDirection = 'column';
+    mediaCol.style.gap = '12px';
   }
 
   // אריאל - layout ייחודי
