@@ -384,6 +384,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* וולט בלבד */
 .lb-wolt{flex-direction:row-reverse !important;}
 .lb-wolt .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;}
+.lb-wolt .lb-img img,.lb-wolt .lb-img video{width:100% !important;max-height:35vh !important;object-fit:contain !important;}
 .wolt-num{position:absolute;top:6px;left:8px;font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;}
 
 /* וופל לימון בלבד */
@@ -829,7 +830,6 @@ const works = [
     desc: 'פרינטים לוופל לימון של עלית.'
   },
   {
-    img: 'images/wolt1.png',
     img2: 'videos/wolt2.mp4',
     img3: 'images/wolt3.png',
     img4: 'images/wolt4.png',
@@ -938,7 +938,7 @@ function openLightbox(i) {
 
   // Grid layout
   const mediaCol = document.getElementById('lb-media-col');
-  if (media.length > 1 && i !== 3) {
+  if (media.length > 1) {
     mediaCol.style.display = 'grid';
     mediaCol.style.gridTemplateColumns = '1fr 1fr';
     mediaCol.style.gap = '12px';
