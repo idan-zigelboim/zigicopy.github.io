@@ -387,7 +387,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-wolt .lb-img{align-items:center !important;justify-content:center !important;overflow:visible !important;}
 .lb-wolt .wolt-media-wrap{position:relative;display:inline-block;width:fit-content;max-width:100%;line-height:0;}
 .lb-wolt .wolt-media-wrap img,.lb-wolt .wolt-media-wrap video{display:block;width:auto !important;max-width:100% !important;max-height:35vh !important;object-fit:contain !important;}
-.wolt-num{position:absolute;top:6px;left:8px;font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;}
+.wolt-num{position:absolute;top:0;right:calc(100% + 10px);font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;white-space:nowrap;}
 
 /* וופל לימון בלבד */
 .lb-lemon{flex-direction:row-reverse !important;}
@@ -480,6 +480,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #music-container{
   position:fixed;bottom:28px;right:28px;z-index:200;
   display:flex;flex-direction:column;align-items:center;gap:5px;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+#music-container.visible{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity 0.3s ease;
 }
 #music-label{
   font-family:'MiriamLibre',sans-serif;
@@ -777,6 +783,8 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
+        const musicContainer = document.getElementById('music-container');
+        if (musicContainer) musicContainer.classList.add('visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
         const titleDelay = Math.round((P_title * 65 - 2) * 1000);
