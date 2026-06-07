@@ -408,7 +408,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-ariel .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:16px !important;}
 .lb-ariel .lb-img img{max-height:70vh !important;width:100% !important;object-fit:contain !important;}
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
-.lb-desc{font-family:'MiriamLibre',sans-serif;font-weight:400;font-size:16px;line-height:1.9;font-weight:300;color:var(--white);opacity:0.75;}
+.lb-desc{font-family:'MiriamLibre',sans-serif;font-weight:300;font-size:16px;line-height:1.5;color:var(--white);opacity:0.75;}
 .lb-close{
   position:fixed;top:24px;right:24px;
   background:transparent;border:none;
@@ -850,7 +850,7 @@ const works = [
     video: null,
     name: 'וולט יום האישה (תן קרדיט קבל קרדיט)',
     tag: '',
-    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nעל נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט (אה? אה?)\n\nקמפיין דיגיטל שנבחר במסגרת יום האישה במקאן, עבר אישור של וולט ונבלם על ידי הפרסים.'
+    desc: 'על הישגים של גברים יש לנו שמות בשלוף.\nאבל על נשים ששינו את העולם? פחות...\nולכן יום האישה זה הזמן המושלם לתת להן קרדיט. (אה? אה?)\n\nאחרי כל הזמנה, בזמן ההמתנה לשליח, יופיע שאלון שעוסק בהישגים נשיים.\nידעת לתת להן קרדיט? קיבלת עשרה קרדיטים לחשבון.\n\nקמפיין דיגיטל לוולט שהוצג במסגרת יום האישה במקאן, נבחר לעלות לאוויר אך נבלם על ידי הפרסים.\n(האיראנים תקפו נו)'
   },
 
   {
@@ -882,7 +882,7 @@ function openLightbox(i) {
   document.getElementById('lb-title').textContent = w.name;
   document.getElementById('lb-desc').innerHTML = w.desc
     .split('\n')
-    .map(line => line.trim() ? `<p style="direction:rtl;text-align:right;margin:0 0 8px;unicode-bidi:bidi-override;">${line}</p>` : '<br>')
+    .map(line => line.trim() ? `<p style="direction:rtl;text-align:right;margin:0 0 3px;unicode-bidi:bidi-override;">${line}</p>` : '<br>')
     .join('');
 
   // YouTube
