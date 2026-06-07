@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- zigi-build-marker: ariel-zoom-v2 -->
 <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   @font-face {
@@ -426,6 +427,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 #zoom-lb.open{display:flex;}
 #zoom-img{max-height:90vh;max-width:88vw;object-fit:contain;display:block;}
+#zoom-lb.ariel-zoom #zoom-img{max-width:92vw !important;max-height:92vh !important;object-fit:contain !important;}
 #zoom-video{max-height:90vh;max-width:88vw;display:none;align-self:center;}
 .zoom-arrow{
   position:absolute;top:50%;transform:translateY(-50%);
@@ -901,6 +903,7 @@ function openLightbox(i) {
   ['img2','img3','img4','img5'].forEach(key => {
     if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4') });
   });
+  media.forEach(item => { item.workIndex = i; });
 
   // Wolt video thumbnails: show a still image in the gallery, keep the original video for zoom playback
   if (i === 3) {
@@ -1062,6 +1065,18 @@ function renderZoom() {
   const item = zoomItems[zoomIdx];
   const img = document.getElementById('zoom-img');
   const vid = document.getElementById('zoom-video');
+  const zoomLb = document.getElementById('zoom-lb');
+  if (zoomLb) zoomLb.classList.toggle('ariel-zoom', item.workIndex === 0);
+  const isArielZoom = item.workIndex === 0;
+  if (isArielZoom) {
+    img.style.maxWidth = '92vw';
+    img.style.maxHeight = '92vh';
+    img.style.objectFit = 'contain';
+  } else {
+    img.style.maxWidth = '';
+    img.style.maxHeight = '';
+    img.style.objectFit = '';
+  }
   if (item.isVideo) {
     vid.src = item.src;
     vid.style.display = 'block';
@@ -1086,7 +1101,9 @@ function zoomNav(dir) {
 }
 
 function closeZoom() {
-  document.getElementById('zoom-lb').classList.remove('open');
+  const zoomLb = document.getElementById('zoom-lb');
+  zoomLb.classList.remove('open');
+  zoomLb.classList.remove('ariel-zoom');
   document.body.style.overflow = '';
   const v = document.getElementById('zoom-video');
   v.pause(); v.src = '';
