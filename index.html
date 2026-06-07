@@ -493,15 +493,15 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 #music-label{
   font-family:'MiriamLibre',sans-serif;
-  font-size:12px;color:var(--yellow);opacity:0.55;
+  font-size:15px;color:var(--yellow);opacity:0.55;
   direction:rtl;text-align:center;white-space:nowrap;
 }
 #music-btn{
   background:transparent;
   border:2px solid rgba(255,232,26,0.8);
   border-radius:50%;
-  width:48px;height:48px;
-  color:var(--yellow);font-size:22px;
+  width:58px;height:58px;
+  color:var(--yellow);font-size:28px;
   line-height:1;
   padding-bottom:2px;
   display:flex;align-items:center;justify-content:center;
@@ -1085,6 +1085,7 @@ function renderZoom() {
     img.style.display = 'none';
     vid.currentTime = zoomStartTime;
     zoomStartTime = 0;
+    vid.volume = 0.4;
     vid.play().catch(() => {});
   } else {
     img.src = item.src;
