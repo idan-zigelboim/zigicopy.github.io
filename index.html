@@ -429,6 +429,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #zoom-img{max-height:90vh;max-width:88vw;object-fit:contain;display:block;}
 #zoom-lb.ariel-zoom #zoom-img{max-width:92vw !important;max-height:92vh !important;object-fit:contain !important;}
 #zoom-video{max-height:90vh;max-width:88vw;display:none;align-self:center;}
+#zoom-caption{display:none;max-width:200px;font-family:'MiriamLibre',sans-serif;font-size:14px;color:rgba(255,255,255,0.85);direction:rtl;text-align:right;line-height:1.7;padding:0 24px;align-self:center;}
 .zoom-arrow{
   position:absolute;top:50%;transform:translateY(-50%);
   background:transparent;border:none;
@@ -845,6 +846,7 @@ const works = [
   {
     img2: 'videos/wolt2.mp4',
     img3: 'images/wolt3.png',
+    captions: { img2: 'הדמייה של השאלון', img3: 'בסוף השאלון בין אם טעו או צדקו, יופיע ההסבר על התשובה הנכונה. בנוסף תהיה אופציה לשתף ברשתות החברתיות' },
     img4: 'images/wolt4.png',
     img5: 'videos/wolt5.mp4',
     video: null,
@@ -901,7 +903,7 @@ function openLightbox(i) {
   const media = [];
   if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
   ['img2','img3','img4','img5'].forEach(key => {
-    if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4') });
+    if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), caption: w.captions?.[key] || '' });
   });
   media.forEach(item => { item.workIndex = i; });
 
@@ -1091,6 +1093,8 @@ function renderZoom() {
     vid.style.display = 'none';
   }
   document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
+  const captionEl = document.getElementById('zoom-caption');
+  if (item.caption) { captionEl.textContent = item.caption; captionEl.style.display = 'block'; } else { captionEl.textContent = ''; captionEl.style.display = 'none'; }
   document.getElementById('zoom-next').style.opacity = zoomIdx > 0 ? '1' : '0.2';
   document.getElementById('zoom-prev').style.opacity = zoomIdx < zoomItems.length-1 ? '1' : '0.2';
 }
@@ -1130,6 +1134,7 @@ document.addEventListener('keydown', e => {
   <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(1)">‹</div>
   <img id="zoom-img" src="" alt="">
   <video id="zoom-video" controls></video>
+  <div id="zoom-caption"></div>
   <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(-1)">›</div></div>
   <div id="zoom-counter"></div>
 </div>
