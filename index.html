@@ -431,15 +431,17 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #zoom-video{max-height:90vh;max-width:88vw;display:none;align-self:center;}
 #zoom-caption{display:none;max-width:240px;font-family:'MiriamLibre',sans-serif;font-size:19px;color:var(--yellow);direction:rtl;text-align:right;line-height:1.7;padding:0 0 0 80px;align-self:center;}
 .zoom-arrow{
-  position:absolute;top:50%;transform:translateY(-50%);
+  position:absolute;top:0;bottom:0;
+  width:13vw;
   background:transparent;border:none;
   color:var(--yellow);font-size:36px;
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all 0.2s;user-select:none;
+  cursor:pointer;transition:opacity 0.2s;user-select:none;
+  opacity:0.4;
 }
-.zoom-arrow:hover{opacity:0.7;}
-#zoom-prev{left:20px;}
-#zoom-next{right:20px;}
+.zoom-arrow:hover{opacity:1;background:rgba(255,255,255,0.03);}
+#zoom-prev{left:0;}
+#zoom-next{right:0;}
 #zoom-close-btn{
   position:absolute;top:20px;right:20px;
   background:transparent;border:none;
