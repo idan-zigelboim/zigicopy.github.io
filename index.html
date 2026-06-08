@@ -429,6 +429,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #zoom-img{max-height:90vh;max-width:88vw;object-fit:contain;display:block;}
 #zoom-lb.ariel-zoom #zoom-img{max-width:92vw !important;max-height:92vh !important;object-fit:contain !important;}
 #zoom-video{max-height:90vh;max-width:88vw;display:none;align-self:center;}
+#zoom-yt{display:none;max-height:90vh;max-width:88vw;border:none;aspect-ratio:16/9;min-width:560px;}
 #zoom-caption{display:none;max-width:240px;font-family:'MiriamLibre',sans-serif;font-size:19px;color:var(--yellow);direction:rtl;text-align:right;line-height:1.7;padding:0 0 0 80px;align-self:center;}
 .zoom-arrow{
   position:absolute;top:0;bottom:0;
@@ -904,7 +905,7 @@ function openLightbox(i) {
 
   // Build media list - skip img if youtube exists (thumbnail only for card)
   const media = [];
-  if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
+  if (!w.youtube && w.img && i !== 4) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
   ['img2','img3','img4','img5'].forEach(key => {
     if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), caption: w.captions?.[key] || '' });
   });
@@ -972,7 +973,7 @@ function openLightbox(i) {
       } else {
         const img = document.createElement('img');
         img.src = media[idx].src;
-        img.style.cssText = 'width:100%;max-height:14vh;object-fit:contain;cursor:zoom-in;';
+        img.style.cssText = i === 4 ? 'width:100%;object-fit:contain;cursor:zoom-in;display:block;' : 'width:100%;max-height:14vh;object-fit:contain;cursor:zoom-in;';
         img.addEventListener('click', () => openZoom(media, idx));
         mediaTarget.appendChild(img);
       }
@@ -992,15 +993,26 @@ function openLightbox(i) {
 
   // Grid layout
   const mediaCol = document.getElementById('lb-media-col');
-  if (media.length > 1) {
+  if (i === 4) {
+    mediaCol.style.display = 'grid';
+    mediaCol.style.gridTemplateColumns = '1fr 1fr';
+    mediaCol.style.gap = '16px';
+    mediaCol.style.overflowY = 'auto';
+    mediaCol.style.maxHeight = '80vh';
+    mediaCol.style.direction = 'rtl';
+  } else if (media.length > 1) {
     mediaCol.style.display = 'grid';
     mediaCol.style.gridTemplateColumns = '1fr 1fr';
     mediaCol.style.gap = '12px';
     mediaCol.style.direction = 'rtl';
+    mediaCol.style.overflowY = '';
+    mediaCol.style.maxHeight = '';
   } else {
     mediaCol.style.display = 'flex';
     mediaCol.style.flexDirection = 'column';
     mediaCol.style.gap = '12px';
+    mediaCol.style.overflowY = '';
+    mediaCol.style.maxHeight = '';
   }
 
   // אריאל - layout ייחודי
@@ -1061,6 +1073,8 @@ function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
   zoomStartTime = startTime;
+  // Stop all small iframes (YouTube) in lightbox slots
+  document.querySelectorAll('#lb-inner iframe').forEach(f => { f.src = ''; });
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1082,10 +1096,18 @@ function renderZoom() {
     img.style.maxHeight = '';
     img.style.objectFit = '';
   }
-  if (item.isVideo) {
+  const ytEl = document.getElementById('zoom-yt');
+  const isYT = item.src && item.src.includes('youtube.com/embed');
+  if (isYT) {
+    ytEl.src = item.src + (item.src.includes('?') ? '&' : '?') + 'autoplay=1';
+    ytEl.style.display = 'block';
+    img.style.display = 'none';
+    vid.pause(); vid.src = ''; vid.style.display = 'none';
+  } else if (item.isVideo) {
     vid.src = item.src;
     vid.style.display = 'block';
     img.style.display = 'none';
+    ytEl.src = ''; ytEl.style.display = 'none';
     vid.currentTime = zoomStartTime;
     zoomStartTime = 0;
     vid.volume = 0.4;
@@ -1093,8 +1115,8 @@ function renderZoom() {
   } else {
     img.src = item.src;
     img.style.display = 'block';
-    vid.pause(); vid.src = '';
-    vid.style.display = 'none';
+    vid.pause(); vid.src = ''; vid.style.display = 'none';
+    ytEl.src = ''; ytEl.style.display = 'none';
   }
   document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
   const captionEl = document.getElementById('zoom-caption');
@@ -1115,6 +1137,8 @@ function closeZoom() {
   document.body.style.overflow = '';
   const v = document.getElementById('zoom-video');
   v.pause(); v.src = '';
+  const ytEl = document.getElementById('zoom-yt');
+  if (ytEl) ytEl.src = '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1138,6 +1162,7 @@ document.addEventListener('keydown', e => {
   <div class="zoom-arrow" id="zoom-prev" onclick="zoomNav(1)">‹</div>
   <img id="zoom-img" src="" alt="">
   <video id="zoom-video" controls></video>
+  <iframe id="zoom-yt" src="" allowfullscreen allow="autoplay;encrypted-media"></iframe>
   <div id="zoom-caption"></div>
   <div class="zoom-arrow" id="zoom-next" onclick="zoomNav(-1)">›</div></div>
   <div id="zoom-counter"></div>
