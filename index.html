@@ -947,7 +947,7 @@ function openLightbox(i) {
         const iframe = document.createElement('iframe');
         const ytSrc = media[idx].src.includes('enablejsapi') ? media[idx].src : media[idx].src + (media[idx].src.includes('?') ? '&' : '?') + 'enablejsapi=1';
         iframe.src = ytSrc;
-        iframe.style.cssText = 'width:100%;aspect-ratio:16/9;min-height:220px;border:none;';
+        iframe.style.cssText = 'width:100%;aspect-ratio:16/9;max-height:30vh;min-height:120px;border:none;display:block;'
         iframe.setAttribute('allowfullscreen', '');
         iframe.setAttribute('allow', 'autoplay;encrypted-media');
         mediaTarget.appendChild(iframe);
