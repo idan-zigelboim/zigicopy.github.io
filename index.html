@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- zigi-build-marker: mashbir-gap-42px -->
 <!-- zigi-build-marker: ariel-zoom-v2 -->
 <link href="https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
@@ -410,7 +411,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 
 /* המשביר בלבד */
 .lb-mashbir{flex-direction:row-reverse !important;}
-.lb-mashbir .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:repeat(2,minmax(260px,520px)) !important;justify-content:center !important;align-items:center !important;gap:24px !important;max-height:80vh !important;overflow-y:auto !important;direction:rtl !important;}
+.lb-mashbir .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:repeat(2,minmax(260px,520px)) !important;justify-content:center !important;align-items:center !important;gap:42px !important;max-height:80vh !important;overflow-y:auto !important;direction:rtl !important;}
 .lb-mashbir .lb-img{display:flex !important;align-items:center !important;justify-content:center !important;overflow:visible !important;}
 .lb-mashbir .lb-img img{width:100% !important;max-width:520px !important;max-height:48vh !important;object-fit:contain !important;display:block !important;}
 .lb-mashbir .lb-img iframe{width:100% !important;max-width:520px !important;aspect-ratio:16/9 !important;height:auto !important;min-height:0 !important;border:none !important;display:block !important;}
@@ -1005,7 +1006,7 @@ function openLightbox(i) {
   if (i === 4) {
     mediaCol.style.display = 'grid';
     mediaCol.style.gridTemplateColumns = '1fr 1fr';
-    mediaCol.style.gap = '16px';
+    mediaCol.style.gap = '32px';
     mediaCol.style.overflowY = 'auto';
     mediaCol.style.maxHeight = '80vh';
     mediaCol.style.direction = 'rtl';
