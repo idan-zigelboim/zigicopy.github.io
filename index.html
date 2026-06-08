@@ -860,7 +860,7 @@ const works = [
   },
 
   {
-    img: 'images/mashbirlogo.png',
+    img: 'images/mashbir1.png',
     name: 'עבודת גמר - המשביר לצרכן',
     tag: '',
     desc: 'בינינו, גיפט קארד זה לא בדיוק המתנה שרוצים לקבל...\n\nקמפיין <span dir=\"ltr\" style=\"display:inline-block;\">360</span> למשביר שמחזיר את המתנות הפיזיות למרכז העניינים וממצב את המשביר כבית של המתנות.\n\nקמפיין שהוא כולו אנטי גיפט קארד ומציג איך מתנה שנראית כמו פתרון קל, הופכת בפועל לנטל: המקבל צריך לזכור לממש, להגיע לחנות, לבחור לעצמו, ולפעמים גם להוסיף כסף בדרך. ושלא נתחיל לדבר על העניין הרגשי...\n\n* קמפיין די ארוך לפניכם, מומלץ להיכנס לתמונה הימנית ומשם לגלול בעזרת החצים'
@@ -905,7 +905,7 @@ function openLightbox(i) {
 
   // Build media list - skip img if youtube exists (thumbnail only for card)
   const media = [];
-  if (!w.youtube && w.img && i !== 4) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
+  if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
   ['img2','img3','img4','img5'].forEach(key => {
     if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), caption: w.captions?.[key] || '' });
   });
@@ -944,7 +944,8 @@ function openLightbox(i) {
 
       if (media[idx].src && media[idx].src.includes('youtube.com/embed')) {
         const iframe = document.createElement('iframe');
-        iframe.src = media[idx].src;
+        const ytSrc = media[idx].src.includes('enablejsapi') ? media[idx].src : media[idx].src + (media[idx].src.includes('?') ? '&' : '?') + 'enablejsapi=1';
+        iframe.src = ytSrc;
         iframe.style.cssText = 'width:100%;aspect-ratio:16/9;min-height:220px;border:none;';
         iframe.setAttribute('allowfullscreen', '');
         iframe.setAttribute('allow', 'autoplay;encrypted-media');
@@ -1069,17 +1070,15 @@ let zoomIdx = 0;
 
 let zoomStartTime = 0;
 
-let savedIframeSrcs = [];
-
 function openZoom(items, idx, startTime = 0) {
   zoomItems = items;
   zoomIdx = idx;
   zoomStartTime = startTime;
-  // Save and stop small iframes (YouTube) in lightbox slots
-  savedIframeSrcs = [];
+  // Pause YouTube iframes via postMessage (no src clear = no reload delay)
   document.querySelectorAll('#lb-inner iframe').forEach(f => {
-    savedIframeSrcs.push({ el: f, src: f.src });
-    f.src = '';
+    if (f.src.includes('youtube.com')) {
+      f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    }
   });
   renderZoom();
   document.getElementById('zoom-lb').classList.add('open');
@@ -1145,9 +1144,7 @@ function closeZoom() {
   v.pause(); v.src = '';
   const ytEl = document.getElementById('zoom-yt');
   if (ytEl) ytEl.src = '';
-  // Restore small iframes
-  savedIframeSrcs.forEach(({ el, src }) => { el.src = src; });
-  savedIframeSrcs = [];
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
