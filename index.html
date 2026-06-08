@@ -947,7 +947,7 @@ function openLightbox(i) {
         const iframe = document.createElement('iframe');
         const ytSrc = media[idx].src.includes('enablejsapi') ? media[idx].src : media[idx].src + (media[idx].src.includes('?') ? '&' : '?') + 'enablejsapi=1';
         iframe.src = ytSrc;
-        iframe.style.cssText = 'width:100%;aspect-ratio:16/9;max-height:30vh;min-height:120px;border:none;display:block;'
+        iframe.style.cssText = 'width:100%;border:none;display:block;'
         iframe.setAttribute('allowfullscreen', '');
         iframe.setAttribute('allow', 'autoplay;encrypted-media');
         mediaTarget.appendChild(iframe);
@@ -1002,6 +1002,19 @@ function openLightbox(i) {
     mediaCol.style.overflowY = 'auto';
     mediaCol.style.maxHeight = '80vh';
     mediaCol.style.direction = 'rtl';
+    // Sync iframe height to image height after render
+    requestAnimationFrame(() => {
+      const firstImg = mediaCol.querySelector('img');
+      const iframes = mediaCol.querySelectorAll('iframe');
+      if (firstImg && iframes.length) {
+        firstImg.onload = () => {
+          iframes.forEach(f => { f.style.height = firstImg.offsetHeight + 'px'; });
+        };
+        if (firstImg.complete) {
+          iframes.forEach(f => { f.style.height = firstImg.offsetHeight + 'px'; });
+        }
+      }
+    });
   } else if (media.length > 1) {
     mediaCol.style.display = 'grid';
     mediaCol.style.gridTemplateColumns = '1fr 1fr';
