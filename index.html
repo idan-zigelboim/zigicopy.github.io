@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- MASHBIRVID3-5-ADDED-CHRONOLOGICAL-V1 -->
 <!-- MASHBIR8-9-ADDED-BEFORE-VIDEOS-V1 -->
 <!-- MASHBIR-VIDEOS-THUMB-SIZE-FIX-V1 -->
 <!-- MASHBIR7-BEFORE-VIDEOS-V1 -->
@@ -687,6 +688,7 @@ footer a:hover{color:var(--yellow);}
       <div class="lb-img" id="lb-slot12" style="display:none"></div>
       <div class="lb-img" id="lb-slot13" style="display:none"></div>
       <div class="lb-img" id="lb-slot14" style="display:none"></div>
+      <div class="lb-img" id="lb-slot15" style="display:none"></div>
     </div>
   </div>
 </div>
@@ -898,6 +900,9 @@ const works = [
     img10: 'videos/mashbirvid2.mp4',
     img11: 'images/mashbir8.png',
     img12: 'images/mashbir9.png',
+    img13: 'videos/mashbirvid3.mp4',
+    img14: 'videos/mashbirvid4.mp4',
+    img15: 'videos/mashbirvid5.mp4',
     name: 'עבודת גמר - המשביר לצרכן',
     tag: '',
     desc: 'בינינו, גיפט קארד זה לא בדיוק המתנה שרוצים לקבל...\n\nקמפיין <span dir=\"ltr\" style=\"display:inline-block;\">360</span> למשביר שמחזיר את המתנות הפיזיות למרכז העניינים וממצב את המשביר כבית של המתנות.\n\nקמפיין שהוא כולו אנטי גיפט קארד ומציג איך מתנה שנראית כמו פתרון קל, הופכת בפועל לנטל: המקבל צריך לזכור לממש, להגיע לחנות, לבחור לעצמו, ולפעמים גם להוסיף כסף בדרך. ושלא נתחיל לדבר על העניין הרגשי...\n\n* קמפיין די ארוך לפניכם, מומלץ להיכנס לתמונה הימנית ומשם לגלול בעזרת החצים'
@@ -943,7 +948,7 @@ function openLightbox(i) {
   // Build media list - skip img if youtube exists (thumbnail only for card)
   const media = [];
   if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
-  Array.from({ length: 13 }, (_, n) => `img${n + 2}`).forEach(key => {
+  Array.from({ length: 14 }, (_, n) => `img${n + 2}`).forEach(key => {
     if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), caption: w.captions?.[key] || '' });
   });
   media.forEach(item => { item.workIndex = i; });
@@ -960,7 +965,7 @@ function openLightbox(i) {
     });
   }
 
-  const slotIds = Array.from({ length: 14 }, (_, n) => `lb-slot${n + 1}`);
+  const slotIds = Array.from({ length: 15 }, (_, n) => `lb-slot${n + 1}`);
   slotIds.forEach((id, idx) => {
     const el = document.getElementById(id);
     if (!el) return;
