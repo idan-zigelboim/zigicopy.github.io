@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- MASHBIR-ZOOM-CAPTIONS-V1 -->
+<!-- MASHBIR-NUMBERS-RIGHT-SIDE-V1 -->
 <!-- MASHBIR-LIGHTBOX-TEXT-FIX-V1 -->
 <!-- MASHBIR-YOUTUBE-FEATURED-SIZE-V1 -->
 <!-- MASHBIR13-16-FOUR-IN-A-ROW-V1 -->
@@ -504,7 +506,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #zoom-lb.ariel-zoom #zoom-img{max-width:92vw !important;max-height:92vh !important;object-fit:contain !important;}
 #zoom-video{max-height:90vh;max-width:88vw;display:none;align-self:center;}
 #zoom-yt{display:none;max-height:90vh;max-width:88vw;border:none;aspect-ratio:16/9;min-width:560px;}
-#zoom-caption{display:none;max-width:240px;font-family:'MiriamLibre',sans-serif;font-size:19px;color:var(--yellow);direction:rtl;text-align:right;line-height:1.7;padding:0 0 0 80px;align-self:center;}
+#zoom-caption{display:none;max-width:300px;max-height:72vh;overflow-y:auto;font-family:'MiriamLibre',sans-serif;font-size:18px;color:var(--yellow);direction:rtl;text-align:right;line-height:1.65;padding:0 0 0 80px;align-self:center;white-space:pre-line;}
 .zoom-arrow{
   position:absolute;top:0;bottom:0;
   width:13vw;
@@ -975,6 +977,29 @@ const works = [
     img21: 'images/mashbir15.png',
     img22: 'images/mashbir16.png',
     img23: 'images/mashbir17.png',
+    captions: {
+      img: 'סלוגן הקמפיין',
+      img2: 'סרט הטלוויזיה.\n(שניה 00:51 זוכרים?)',
+      img3: 'שלטי חוצות',
+      img6: 'פוסטים לסושיאל',
+      img7: 'סטוריז מעורבות, ממשיכים את הפוסטים.',
+      img8: 'סטורי הסיכום שיופיע אחרון',
+      img9: 'משפיענים - המשפיענים יעשו את מה שהם עושים הכי טוב בעזרת ה"מתנות" שקיבלו מהקרובים שלהם...\nדוגמא ראשונה: קובי אדרי.',
+      img10: 'דוגמא שניה: דנה זרמון',
+      img11: 'מהלך דיגיטל - שיתוף פעולה בין המשביר לגט.\n\nלאחר שתי דקות במונית,\nהנוסע יקבל התראה.\n\nתופיע לו שאלה על הנהג.',
+      img12: 'מי שיענה נכון\nיהנה מ10% הנחה לקנייה במשביר.\n\nמי שיטעה לפחות ירוויח מוסר השכל\n(וגם 10% הנחה לקנייה במשביר).',
+      img13: 'רדיו - נימוס בצד, איך *באמת* מרגישים כשמקבלים גיפט קארד.\nדוגמא ראשונה: גיפט קארד לחנוכת בית.',
+      img14: 'גיפט קארד ליולדת.',
+      img15: 'גיפט קארד לחג.',
+      img16: 'גרילה - מה עושים עם שקל וקצת שנשאר בגיפט קארד? תורמים!\nבבימה תוצב מכונה לתרומת גיפט קארד\nולידה מיצג הקאטר.',
+      img17: 'מכניסים את הכרטיס למכונה או מזינים פרטים באופן ידני, ולאחר מכן מופיעה היתרה שנשארה.',
+      img18: 'אם החלטתם לתרום, יש דרך להיפטר מהכרטיס.\n\nניגשים לקאטר מניחים את הכרטיס במגירה, מכניסים את המגירה וחותכים את הכרטיס.',
+      img19: 'שילוט חנויות - שלטים שמוצבים בתוך החנויות (כל שלט במחלקה משלו) שבאים להזכיר לאלו שכבר נמצאים בחנות, שמתנה פיזית, זו תמיד האופציה הנכונה.\nלדוגמא: מחלקת תיקים',
+      img20: 'מחלקת טיפוח',
+      img21: 'מחלקת רחצה',
+      img22: 'מחלקת מכשירי חשמל',
+      img23: 'השלטים מוצבים בחנויות'
+    },
     name: 'עבודת גמר - המשביר לצרכן',
     tag: '',
     desc: 'בינינו, גיפט קארד זה לא בדיוק המתנה שרוצים לקבל...\n\nקמפיין <span dir=\"ltr\" style=\"display:inline-block;\">360</span> למשביר שמחזיר את המתנות הפיזיות למרכז העניינים וממצב את המשביר כבית של המתנות.\n\nקמפיין שהוא כולו אנטי גיפט קארד ומציג איך מתנה שנראית כמו פתרון קל, הופכת בפועל לנטל: המקבל צריך לזכור לממש, להגיע לחנות, לבחור לעצמו, ולפעמים גם להוסיף כסף בדרך.\nושלא נתחיל לדבר על העניין הרגשי...\n\n* קמפיין די ארוך לפניכם, מומלץ להיכנס לתמונה הראשונה ומשם להמשיך'
@@ -1019,7 +1044,7 @@ function openLightbox(i) {
 
   // Build media list - skip img if youtube exists (thumbnail only for card)
   const media = [];
-  if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4') });
+  if (!w.youtube && w.img) media.push({ src: w.img, isVideo: w.img.endsWith('.mp4'), caption: w.captions?.img || '' });
   Array.from({ length: 22 }, (_, n) => `img${n + 2}`).forEach(key => {
     if (w[key]) media.push({ src: w[key], isVideo: w[key].endsWith('.mp4'), caption: w.captions?.[key] || '' });
   });
