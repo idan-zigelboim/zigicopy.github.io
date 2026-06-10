@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- CRAWL-TEXT-LO-KOACH-TWEAK-V1 -->
+<!-- CRAWL-SLIGHTLY-FASTER-V1 -->
 <!-- MASHBIR1-COPY-CAPTION-TWEAK-V1 -->
 <!-- MASHBIRVID3-BEEMET-BOLD-V1 -->
 <!-- MASHBIR-LIGHTBOX-DESC-FINAL-TWEAK-V1 -->
@@ -112,7 +114,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 65s linear forwards;
+  animation:crawl 60s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
@@ -656,7 +658,7 @@ footer a:hover{color:var(--yellow);}
           מה אבא מה???<br>
           אני שעה עונה לך!<br>
           לא, לא בא לי מלון, אני רגע עושה משהו.<br>
-          לא חשוב, לא עובד.<br>
+          אין לי כוח, לא עובד.<br>
           העבודות למטה, נדבר פנים אל פנים גם ככה.<br>
           <br>
           *ואם את/ה תוהה איך אני נראה -<br>
@@ -889,7 +891,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlEl2.style.animation = 'none';
         crawlEl2.offsetHeight; // force reflow
         // No delay - text starts rising immediately
-        crawlEl2.style.animation = 'crawl 65s linear -2s both';
+        crawlEl2.style.animation = 'crawl 60s linear -2s both';
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
