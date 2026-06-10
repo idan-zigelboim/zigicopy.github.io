@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- MASHBIR-THREE-COLUMN-GROUP-LAYOUT-V1 -->
+<!-- MASHBIR-NUMBERS-LIKE-WOLT-V1 -->
 <!-- MASHBIR-INTENTIONAL-ROW-LAYOUT-V1 -->
 <!-- MASHBIR-LAST-ITEM-CENTERED-V1 -->
 <!-- MASHBIR-GRID-PREVIEW-30VH-V1 -->
@@ -404,6 +406,10 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-wolt .wolt-media-wrap img,.lb-wolt .wolt-media-wrap video{display:block;width:auto !important;max-width:100% !important;max-height:35vh !important;object-fit:contain !important;}
 .lb-wolt .wolt-thumb{cursor:pointer;}
 .wolt-num{position:absolute;top:6px;right:calc(100% + 10px);font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;white-space:nowrap;}
+.lb-mashbir .mashbir-media-wrap{position:relative;display:inline-block;width:fit-content;max-width:100%;line-height:0;overflow:visible;}
+.lb-mashbir .mashbir-media-wrap iframe{width:calc(30vh * 16 / 9) !important;max-width:100% !important;}
+.mashbir-num{position:absolute;top:6px;right:calc(100% + 10px);font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;white-space:nowrap;}
+
 
 /* וופל לימון בלבד */
 .lb-lemon{flex-direction:row-reverse !important;}
@@ -424,22 +430,33 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 
 /* המשביר בלבד */
 .lb-mashbir{flex-direction:row-reverse !important;}
-.lb-mashbir .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:repeat(2,minmax(260px,1fr)) !important;justify-content:center !important;align-items:start !important;gap:12px !important;max-height:80vh !important;overflow-y:auto !important;direction:rtl !important;width:100% !important;margin-left:0 !important;margin-right:0 !important;padding:0 8px 8px 0 !important;}
-.lb-mashbir .lb-img{display:flex !important;align-items:center !important;justify-content:center !important;overflow:visible !important;background:transparent !important;}
+.lb-mashbir .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:repeat(6,minmax(0,1fr)) !important;justify-content:center !important;align-items:start !important;gap:12px !important;max-height:80vh !important;overflow-y:auto !important;direction:rtl !important;width:100% !important;margin-left:0 !important;margin-right:0 !important;padding:0 8px 8px 0 !important;}
+.lb-mashbir .lb-img{display:flex !important;align-items:center !important;justify-content:center !important;overflow:visible !important;background:transparent !important;grid-column:span 3 !important;}
 .lb-mashbir .lb-img img{display:block !important;width:auto !important;max-width:100% !important;max-height:30vh !important;object-fit:contain !important;cursor:zoom-in !important;}
 .lb-mashbir .lb-img iframe{display:block !important;width:100% !important;max-width:calc(30vh * 16 / 9) !important;aspect-ratio:16/9 !important;height:auto !important;min-height:0 !important;border:none !important;}
 .lb-mashbir .lb-img video{display:block !important;width:auto !important;max-width:100% !important;max-height:30vh !important;object-fit:contain !important;cursor:pointer !important;}
-/* Mashbir intentional row layout */
+/* Mashbir intentional row layout - 6-column grid */
 .lb-mashbir #lb-slot1,
 .lb-mashbir #lb-slot2,
-.lb-mashbir #lb-slot5,
-.lb-mashbir #lb-slot6,
-.lb-mashbir #lb-slot15,
-.lb-mashbir #lb-slot18,
 .lb-mashbir #lb-slot23{
   grid-column:1 / -1 !important;
   justify-self:center !important;
   width:100% !important;
+}
+
+.lb-mashbir #lb-slot3,
+.lb-mashbir #lb-slot4,
+.lb-mashbir #lb-slot5,
+.lb-mashbir #lb-slot6,
+.lb-mashbir #lb-slot7,
+.lb-mashbir #lb-slot8,
+.lb-mashbir #lb-slot13,
+.lb-mashbir #lb-slot14,
+.lb-mashbir #lb-slot15,
+.lb-mashbir #lb-slot16,
+.lb-mashbir #lb-slot17,
+.lb-mashbir #lb-slot18{
+  grid-column:span 2 !important;
 }
 
 .lb-tag{font-size:12px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,232,26,0.4);}
@@ -1008,11 +1025,19 @@ function openLightbox(i) {
 
     if (media[idx]) {
       const isWolt = i === 3;
+      const isMashbir = i === 4;
       let mediaTarget = el;
 
       if (isWolt && !(media[idx].src && media[idx].src.includes('youtube.com/embed'))) {
         const mediaWrap = document.createElement('div');
         mediaWrap.className = 'wolt-media-wrap';
+        el.appendChild(mediaWrap);
+        mediaTarget = mediaWrap;
+      }
+
+      if (isMashbir) {
+        const mediaWrap = document.createElement('div');
+        mediaWrap.className = 'mashbir-media-wrap';
         el.appendChild(mediaWrap);
         mediaTarget = mediaWrap;
       }
@@ -1062,6 +1087,13 @@ function openLightbox(i) {
         num.textContent = (idx+1) + '/' + media.length;
         mediaTarget.appendChild(num);
       }
+
+      if (isMashbir) {
+        const num = document.createElement('span');
+        num.className = 'mashbir-num';
+        num.textContent = (idx+1) + '/' + media.length;
+        mediaTarget.appendChild(num);
+      }
     } else {
       el.style.display = 'none';
     }
@@ -1071,7 +1103,7 @@ function openLightbox(i) {
   const mediaCol = document.getElementById('lb-media-col');
   if (i === 4) {
     mediaCol.style.display = 'grid';
-    mediaCol.style.gridTemplateColumns = 'repeat(2, minmax(260px, 1fr))';
+    mediaCol.style.gridTemplateColumns = 'repeat(6, minmax(0, 1fr))';
     mediaCol.style.gap = '12px';
     mediaCol.style.overflowY = 'auto';
     mediaCol.style.maxHeight = '80vh';
