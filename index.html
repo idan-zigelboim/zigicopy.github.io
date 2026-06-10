@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- MASHBIRVID3-BEEMET-BOLD-V1 -->
 <!-- MASHBIR-LIGHTBOX-DESC-FINAL-TWEAK-V1 -->
 <!-- INTRO-CONTINUE-BUTTON-FASTER-V1 -->
 <!-- MASHBIR9-DISCOUNT-LINE-TWEAK-V1 -->
@@ -512,6 +513,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 #zoom-video{max-height:90vh;max-width:88vw;display:none;align-self:center;}
 #zoom-yt{display:none;max-height:90vh;max-width:88vw;border:none;aspect-ratio:16/9;min-width:560px;}
 #zoom-caption{display:none;max-width:300px;max-height:72vh;overflow-y:auto;font-family:'MiriamLibre',sans-serif;font-size:18px;color:var(--yellow);direction:rtl;text-align:right;line-height:1.65;padding:0 0 0 80px;align-self:center;white-space:pre-line;}
+#zoom-caption strong{font-weight:700;color:var(--yellow);}
 .zoom-arrow{
   position:absolute;top:0;bottom:0;
   width:13vw;
@@ -993,7 +995,7 @@ const works = [
       img10: 'דנה זרמון',
       img11: 'מהלך דיגיטל - שיתוף פעולה בין המשביר לגט.\n\nלאחר שתי דקות במונית,\nהנוסע יקבל התראה מהאפליקציה.\n\nכשיכנס, תופיע לו שאלה על הנהג.',
       img12: 'לאחר שענה יופיע לו מסך בהתאם לאם זכה או טעה.\nככה או ככה, יהנה מ10% הנחה למשביר!',
-      img13: 'רדיו - נימוס בצד, איך *באמת* מרגישים כשמקבלים גיפט קארד.\nדוגמא ראשונה: גיפט קארד לחנוכת בית.',
+      img13: 'רדיו - נימוס בצד, איך <strong>באמת</strong> מרגישים כשמקבלים גיפט קארד.\nדוגמא ראשונה: גיפט קארד לחנוכת בית.',
       img14: 'גיפט קארד ליולדת.',
       img15: 'גיפט קארד לחג.',
       img16: 'גרילה - מה עושים עם שקל וקצת שנשאר בגיפט קארד? תורמים!\nבבימה תוצב מכונה לתרומת גיפט קארד\nולידה מיצג הקאטר.',
@@ -1290,7 +1292,7 @@ function renderZoom() {
   }
   document.getElementById('zoom-counter').textContent = (zoomIdx+1) + ' / ' + zoomItems.length;
   const captionEl = document.getElementById('zoom-caption');
-  if (item.caption) { captionEl.textContent = item.caption; captionEl.style.display = 'block'; } else { captionEl.textContent = ''; captionEl.style.display = 'none'; }
+  if (item.caption) { captionEl.innerHTML = item.caption; captionEl.style.display = 'block'; } else { captionEl.innerHTML = ''; captionEl.style.display = 'none'; }
   document.getElementById('zoom-next').style.opacity = zoomIdx > 0 ? '1' : '0.2';
   document.getElementById('zoom-prev').style.opacity = zoomIdx < zoomItems.length-1 ? '1' : '0.2';
 }
