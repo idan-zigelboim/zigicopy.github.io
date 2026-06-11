@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- PORTFOLIO-TITLE-LESS-EARLY-V1 -->
+<!-- PORTFOLIO-TITLE-SLIGHTLY-EARLIER-V1 -->
 <!-- CRAWL-SPEED-RESTORED-65S-V1 -->
 <!-- CRAWL-FINAL-TEXT-COLOR-SPEED-FIX-V1 -->
 <!-- CRAWL-HOTEL-LINE-SPLIT-V1 -->
@@ -662,8 +664,8 @@ footer a:hover{color:var(--yellow);}
           אני שעה עונה לך!<br>
           לא, לא בא לי מלון<br>
           אני רגע עושה משהו.<br>
-          <span style="color:#49D66B;">וזה מה?<br>
-          אה שוב צבע<br>
+          <span style="color:#FFD54A;">וזה מה?</span><br>
+          <span style="color:#49D66B;">אה שוב צבע<br>
           אין לי כוח, לא עובד.<br>
           העבודות למטה, נדבר פנים אל פנים גם ככה.<br>
           <br>
@@ -905,7 +907,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         if (musicContainer) musicContainer.classList.add('visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.round((P_title * 65 - 2) * 1000);
+        const titleDelay = Math.max(0, Math.round((P_title * 65 - 3.5) * 1000));
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, titleDelay);
