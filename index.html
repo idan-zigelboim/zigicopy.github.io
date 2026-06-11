@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- INTRO-LOGO-NO-BLANK-GAP-V1 -->
+<!-- ARIEL-TITLE-REMOVE-BRAND-SUFFIX-V1 -->
 <!-- PORTFOLIO-TITLE-LESS-EARLY-V1 -->
 <!-- PORTFOLIO-TITLE-SLIGHTLY-EARLIER-V1 -->
 <!-- CRAWL-SPEED-RESTORED-65S-V1 -->
@@ -838,17 +840,16 @@ document.getElementById('intro-btn').addEventListener('click', () => {
   const logo     = document.getElementById('sw-logo');
   const musicBtn = document.getElementById('music-btn');
 
-  // Fade screen 1 to black, show logo screen
+  // Prepare logo screen behind intro, then fade intro away without a blank frame
+  logoScr.classList.add('active');
   intro.style.transition = 'opacity 1s ease, background 1s ease';
   intro.style.opacity = '0';
 
   setTimeout(() => {
     intro.style.display = 'none';
-    logoScr.classList.add('active');
 
     // Trigger logo animation - music starts exactly when logo appears
-    setTimeout(() => {
-      logo.classList.add('animate');
+    logo.classList.add('animate');
       const audio = document.getElementById('sw-audio');
       audio.currentTime = 0;
       audio.volume = 0.35;
@@ -879,7 +880,6 @@ document.getElementById('intro-btn').addEventListener('click', () => {
       musicBtn.textContent = '■';
       musicBtn.classList.add('playing');
       playing = true;
-    }, 80);
 
     // After logo disappears, show crawl and start animation
     setTimeout(() => {
@@ -940,7 +940,7 @@ const works = [
   {
     img: 'images/ariel2.png',
     img2: 'images/ariel1.png',
-    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים - אריאל',
+    name: 'אתם תמשיכו לדבר והם... עדיין ישארו ילדים',
     tag: '',
     desc: 'פרינטים / שלטי חוצות למסיר הכתמים של אריאל.'
   },
