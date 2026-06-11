@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- CRAWL-SPEED-68S-V1 -->
+<!-- WOLT-NUMBERS-RIGHT-SIDE-LIKE-MASHBIR-V1 -->
 <!-- INTRO-LOGO-NO-BLANK-GAP-V1 -->
 <!-- ARIEL-TITLE-REMOVE-BRAND-SUFFIX-V1 -->
 <!-- PORTFOLIO-TITLE-LESS-EARLY-V1 -->
@@ -121,7 +123,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 65s linear forwards;
+  animation:crawl 68s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
@@ -426,7 +428,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-wolt .wolt-media-wrap{position:relative;display:inline-block;width:fit-content;max-width:100%;line-height:0;overflow:visible;}
 .lb-wolt .wolt-media-wrap img,.lb-wolt .wolt-media-wrap video{display:block;width:auto !important;max-width:100% !important;max-height:35vh !important;object-fit:contain !important;}
 .lb-wolt .wolt-thumb{cursor:pointer;}
-.wolt-num{position:absolute;top:6px;right:calc(100% + 10px);font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;white-space:nowrap;}
+.wolt-num{position:absolute;top:6px;left:calc(100% + 10px);right:auto;font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;white-space:nowrap;}
 .lb-mashbir .mashbir-media-wrap{position:relative;display:inline-block;width:fit-content;max-width:100%;line-height:0;overflow:visible;}
 .lb-mashbir .mashbir-media-wrap iframe{width:calc(30vh * 16 / 9) !important;max-width:100% !important;}
 .mashbir-num{position:absolute;top:6px;left:calc(100% + 10px);right:auto;font-family:"StarJedi",sans-serif;font-size:13px;color:var(--yellow);pointer-events:none;z-index:2;letter-spacing:0.05em;background:rgba(0,0,0,0.55);padding:2px 6px;border-radius:4px;white-space:nowrap;}
@@ -899,7 +901,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlEl2.style.animation = 'none';
         crawlEl2.offsetHeight; // force reflow
         // No delay - text starts rising immediately
-        crawlEl2.style.animation = 'crawl 65s linear -2s both';
+        crawlEl2.style.animation = 'crawl 68s linear -2s both';
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
@@ -907,7 +909,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         if (musicContainer) musicContainer.classList.add('visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.max(0, Math.round((P_title * 65 - 3.5) * 1000));
+        const titleDelay = Math.max(0, Math.round((P_title * 68 - 3.5) * 1000));
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, titleDelay);
