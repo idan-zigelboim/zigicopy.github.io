@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- PORTFOLIO-TITLE-2S-LATER-V1 -->
+<!-- CRAWL-AH-SHUV-TZEVA-TO-AH-V1 -->
+<!-- ARIEL-TIGHTER-RIGHT-LEFT-MORE-LEFT-ALL-BIGGER-V1 -->
 <!-- ARIEL-BIGGER-RIGHT-MORE-RIGHT-LEFT-CLOSER-V1 -->
 <!-- ARIEL-RIGHT-WORKS-SLIGHTLY-BIGGER-V1 -->
 <!-- ARIEL-SKETCH-LAYOUT-V1 -->
@@ -482,14 +485,15 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-ariel .lb-media-col{
   flex:1 !important;
   display:grid !important;
-  grid-template-columns:minmax(300px,390px) 128px minmax(255px,330px) minmax(255px,330px) !important;
+  grid-template-columns:minmax(320px,380px) 170px minmax(290px,350px) minmax(290px,350px) !important;
   grid-template-rows:1fr 1fr !important;
-  height:74vh !important;
-  column-gap:18px !important;
-  row-gap:8px !important;
+  height:76vh !important;
+  column-gap:10px !important;
+  row-gap:6px !important;
   justify-content:end !important;
   align-items:stretch !important;
   direction:ltr !important;
+  margin-right:36px !important;
 }
 .lb-ariel #lb-slot4{grid-column:1 !important;grid-row:1 !important;}
 .lb-ariel #lb-slot3{grid-column:1 !important;grid-row:2 !important;}
@@ -727,7 +731,7 @@ footer a:hover{color:var(--yellow);}
           לא, לא בא לי מלון<br>
           אני רגע עושה משהו.<br>
           <span style="color:#FFD54A;">וזה מה?</span><br>
-          <span style="color:#49D66B;">אה שוב צבע<br>
+          <span style="color:#49D66B;">אה<br>
           אין לי כוח, לא עובד.<br>
           העבודות למטה, נדבר פנים אל פנים גם ככה.<br>
           <br>
@@ -967,7 +971,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         if (musicContainer) musicContainer.classList.add('visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.max(0, Math.round((P_title * 67 - 3.5) * 1000));
+        const titleDelay = Math.max(0, Math.round((P_title * 67 - 1.5) * 1000));
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, titleDelay);
