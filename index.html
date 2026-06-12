@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- ARIEL-CUSTOM-ASYMMETRIC-LAYOUT-V1 -->
+<!-- CRAWL-SPEED-67S-V1 -->
 <!-- ARIEL-HORIZONTAL-SPACING-ONLY-V1 -->
 <!-- ARIEL-IMAGES-SPACED-A-LITTLE-MORE-V1 -->
 <!-- ARIEL-LIGHTBOX-BALANCE-TEXT-LIKE-MASHBIR-V1 -->
@@ -136,7 +138,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 68s linear forwards;
+  animation:crawl 67s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
@@ -473,11 +475,27 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* אריאל בלבד */
 .lb-ariel{flex-direction:row-reverse !important;align-items:flex-start !important;}
 .lb-ariel .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;align-self:flex-start !important;padding-top:72px !important;}
-.lb-ariel .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:repeat(2,minmax(240px,340px)) !important;column-gap:20px !important;row-gap:14px !important;justify-content:center !important;align-items:start !important;}
-.lb-ariel .lb-img img{max-height:42vh !important;width:100% !important;object-fit:contain !important;}
+.lb-ariel .lb-media-col{
+  flex:1 !important;
+  display:grid !important;
+  grid-template-columns:minmax(300px,400px) minmax(220px,300px) minmax(220px,300px) !important;
+  grid-template-areas:
+    "ar1 ar3 ar4"
+    "ar2 . .";
+  column-gap:18px !important;
+  row-gap:14px !important;
+  justify-content:center !important;
+  align-items:start !important;
+  direction:ltr !important;
+}
+.lb-ariel #lb-slot1{grid-area:ar4 !important;}
+.lb-ariel #lb-slot2{grid-area:ar3 !important;}
+.lb-ariel #lb-slot3{grid-area:ar2 !important;}
+.lb-ariel #lb-slot4{grid-area:ar1 !important;}
+.lb-ariel .lb-img img{max-height:40vh !important;width:100% !important;object-fit:contain !important;}
 .lb-ariel #lb-slot3 img,
 .lb-ariel #lb-slot4 img{
-  max-height:38vh !important;
+  max-height:32vh !important;
   width:100% !important;
 }
 
@@ -920,7 +938,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlEl2.style.animation = 'none';
         crawlEl2.offsetHeight; // force reflow
         // No delay - text starts rising immediately
-        crawlEl2.style.animation = 'crawl 68s linear -2s both';
+        crawlEl2.style.animation = 'crawl 67s linear -2s both';
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
@@ -928,7 +946,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         if (musicContainer) musicContainer.classList.add('visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.max(0, Math.round((P_title * 68 - 3.5) * 1000));
+        const titleDelay = Math.max(0, Math.round((P_title * 67 - 3.5) * 1000));
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, titleDelay);
