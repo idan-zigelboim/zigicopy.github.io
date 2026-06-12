@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- ARIEL-LOWER-ZOOM-BIGGER-V1 -->
+<!-- ARIEL-BOTTOM-IMAGES-SMALLER-V1 -->
 <!-- ARIEL-GRID-CLOSER-INFO-CENTERED-V1 -->
 <!-- ARIEL-IMAGES-SLIGHTLY-SMALLER-V1 -->
 <!-- ARIEL4-3-ADDED-ABOVE-EXISTING-V1 -->
@@ -470,6 +472,12 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-ariel .lb-info{width:420px !important;min-width:380px !important;flex-shrink:0 !important;flex-direction:column !important;gap:16px !important;align-self:center !important;padding-top:0 !important;}
 .lb-ariel .lb-media-col{flex:1 !important;display:grid !important;grid-template-columns:repeat(2,minmax(260px,380px)) !important;column-gap:12px !important;row-gap:14px !important;justify-content:center !important;align-items:center !important;}
 .lb-ariel .lb-img img{max-height:48vh !important;width:92% !important;object-fit:contain !important;}
+.lb-ariel #lb-slot3 img,
+.lb-ariel #lb-slot4 img{
+  max-height:42vh !important;
+  width:86% !important;
+}
+
 
 /* המשביר בלבד */
 .lb-mashbir{flex-direction:row-reverse !important;}
@@ -1289,10 +1297,20 @@ function renderZoom() {
     img.style.maxWidth = '92vw';
     img.style.maxHeight = '92vh';
     img.style.objectFit = 'contain';
+
+    if (item.src === 'images/ariel2.png' || item.src === 'images/ariel1.png') {
+      img.style.width = '92vw';
+      img.style.height = 'auto';
+    } else {
+      img.style.width = '';
+      img.style.height = '';
+    }
   } else {
     img.style.maxWidth = '';
     img.style.maxHeight = '';
     img.style.objectFit = '';
+    img.style.width = '';
+    img.style.height = '';
   }
   const ytEl = document.getElementById('zoom-yt');
   const isYT = item.src && item.src.includes('youtube.com/embed');
