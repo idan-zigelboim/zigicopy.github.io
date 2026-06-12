@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- ARIEL-SKETCH-LAYOUT-V1 -->
 <!-- ARIEL-CUSTOM-LAYOUT-REFINED-V2 -->
 <!-- ARIEL-CUSTOM-ASYMMETRIC-LAYOUT-V1 -->
 <!-- CRAWL-SPEED-67S-V1 -->
@@ -479,25 +480,42 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 .lb-ariel .lb-media-col{
   flex:1 !important;
   display:grid !important;
-  grid-template-columns:minmax(320px,430px) 64px minmax(230px,300px) minmax(230px,300px) !important;
-  grid-template-areas:
-    "ar1 . ar4 ar3"
-    "ar2 . . .";
+  grid-template-columns:minmax(280px,360px) 96px minmax(190px,250px) minmax(190px,250px) !important;
+  grid-template-rows:1fr 1fr !important;
+  height:68vh !important;
   column-gap:18px !important;
-  row-gap:16px !important;
+  row-gap:18px !important;
   justify-content:center !important;
-  align-items:start !important;
+  align-items:stretch !important;
   direction:ltr !important;
 }
-.lb-ariel #lb-slot1{grid-area:ar4 !important;}
-.lb-ariel #lb-slot2{grid-area:ar3 !important;}
-.lb-ariel #lb-slot3{grid-area:ar2 !important;}
-.lb-ariel #lb-slot4{grid-area:ar1 !important;}
-.lb-ariel .lb-img img{max-height:42vh !important;width:100% !important;object-fit:contain !important;}
+.lb-ariel #lb-slot4{grid-column:1 !important;grid-row:1 !important;}
+.lb-ariel #lb-slot3{grid-column:1 !important;grid-row:2 !important;}
+.lb-ariel #lb-slot1{grid-column:3 !important;grid-row:1 / span 2 !important;}
+.lb-ariel #lb-slot2{grid-column:4 !important;grid-row:1 / span 2 !important;}
+.lb-ariel #lb-slot1,
+.lb-ariel #lb-slot2,
+.lb-ariel #lb-slot3,
+.lb-ariel #lb-slot4{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+}
+.lb-ariel .lb-img img{object-fit:contain !important;display:block !important;}
+.lb-ariel #lb-slot1 img,
+.lb-ariel #lb-slot2 img{
+  width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
+}
 .lb-ariel #lb-slot3 img,
 .lb-ariel #lb-slot4 img{
-  max-height:30vh !important;
   width:100% !important;
+  height:100% !important;
+  max-width:100% !important;
+  max-height:100% !important;
 }
 
 
