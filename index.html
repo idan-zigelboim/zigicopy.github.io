@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- INTRO-PORTFOLIO-EVEN-ZOOM-TINY-FADE-V1 -->
+<!-- INTRO-PORTFOLIO-SLOWER-FARTHER-LATER-FADE-V1 -->
+<!-- INTRO-ZOOMOUT-SMOOTHER-CRAWL-HIDDEN-UNTIL-START-V1 -->
+<!-- INTRO-PORTFOLIO-SAME-STARFIELD-ZOOMOUT-V1 -->
 <!-- CRAWL-66S-ONE-NOTCH-FASTER-V1 -->
 <!-- MASHBIR-RIGHT-EDGE-NUMBERS-VISIBLE-V1 -->
 <!-- ARIEL1-2-TIGHTER-3-4-BIGGER-V1 -->
@@ -145,6 +149,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   transform-origin:50% 100%;
   transform:rotateX(25deg);
   padding:0 12%;
+  visibility:hidden;
 }
 
 #crawl{
@@ -333,11 +338,11 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 /* Screen 2 - Logo zoom-out */
 #logo-screen{
   position:fixed;inset:0;z-index:4900;
-  background:#000;
+  background:transparent;
   display:flex;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;
 }
-#logo-screen.active{opacity:1;pointer-events:auto;}
+#logo-screen.active{opacity:1;pointer-events:none;}
 #sw-logo{
   font-family:'Pathway Gothic One',sans-serif;
   font-size:22vw;
@@ -347,17 +352,24 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   text-align:center;
   line-height:0.85;
   white-space:nowrap;
-  transform:scale(8);
+  transform:scale(4.6);
   opacity:0;
+  will-change:transform,opacity;
 }
 #sw-logo.animate{
-  animation:logoZoom 5s cubic-bezier(0.25,0.1,0.25,1) forwards;
+  animation:logoZoom 4.9s linear forwards;
 }
 @keyframes logoZoom{
-  0%  {transform:scale(8);opacity:1;}
-  15% {opacity:1;}
-  85% {opacity:0.6;}
-  100%{transform:scale(0.05);opacity:0;}
+  0%  {transform:scale(4.6);opacity:1;}
+  14% {transform:scale(3.2);opacity:1;}
+  28% {transform:scale(2.2);opacity:1;}
+  42% {transform:scale(1.45);opacity:1;}
+  56% {transform:scale(0.88);opacity:1;}
+  70% {transform:scale(0.42);opacity:1;}
+  82% {transform:scale(0.16);opacity:1;}
+  92% {transform:scale(0.045);opacity:1;}
+  96% {transform:scale(0.020);opacity:1;}
+  100%{transform:scale(0.006);opacity:0;}
 }
 
 /* Shared fade-out */
@@ -906,13 +918,17 @@ document.getElementById('intro-btn').addEventListener('click', () => {
   const logo     = document.getElementById('sw-logo');
   const musicBtn = document.getElementById('music-btn');
 
-  // Prepare logo screen behind intro, then fade intro away without a blank frame
+  // Prepare the logo over the same starfield/crawl world, then fade intro away
   logoScr.classList.add('active');
+  document.getElementById('stars').style.opacity = '1';
   intro.style.transition = 'opacity 1s ease, background 1s ease';
   intro.style.opacity = '0';
 
   setTimeout(() => {
     intro.style.display = 'none';
+
+    const crawlSection = document.getElementById('crawl-section');
+    const crawlWrapper = document.getElementById('crawl-wrapper');
 
     // Trigger logo animation - music starts exactly when logo appears
     logo.classList.add('animate');
@@ -947,38 +963,39 @@ document.getElementById('intro-btn').addEventListener('click', () => {
       musicBtn.classList.add('playing');
       playing = true;
 
-    // After logo disappears, show crawl and start animation
+    // Start crawl while the logo is already far away.
+    // The crawl is hidden until this exact moment, so it rises from below instead of waiting on-screen.
     setTimeout(() => {
-      logoScr.style.transition = 'opacity 0.8s';
-      logoScr.style.opacity = '0';
+      crawlSection.style.transition = 'none';
+      crawlSection.style.visibility = 'visible';
+      crawlSection.style.opacity = '1';
+      crawlWrapper.style.visibility = 'visible';
+
+      const crawlEl2 = document.getElementById('crawl');
+      const contentH = crawlEl2.scrollHeight;
+      const sectionH = crawlSection.offsetHeight || window.innerHeight * 0.72;
+      // Start: text just below the section fold, so it enters from nowhere.
+      crawlEl2.style.setProperty('--crawl-start', contentH + 'px');
+      crawlEl2.style.animation = 'none';
+      crawlEl2.offsetHeight; // force reflow
+      crawlEl2.style.animation = 'crawl 66s linear 0s both';
+      crawlEl2.style.animationPlayState = 'running';
+      document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
+      document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
+      const musicContainer = document.getElementById('music-container');
+      if (musicContainer) musicContainer.classList.add('visible');
+      // Dynamic: show portfolio title when last sentence reaches middle of screen
+      const P_title = (contentH + sectionH / 2) / (2 * contentH);
+      const titleDelay = Math.max(0, Math.round((P_title * 66 - 1.5) * 1000));
       setTimeout(() => {
-        logoScr.style.display = 'none';
-        const crawlSection = document.getElementById('crawl-section');
-        crawlSection.style.visibility = 'visible';
-        document.getElementById('stars').style.opacity = '1';
-        setTimeout(() => { crawlSection.style.opacity = '1'; }, 50);
-        const crawlEl2 = document.getElementById('crawl');
-        const contentH = crawlEl2.scrollHeight;
-        const sectionH = crawlSection.offsetHeight || window.innerHeight * 0.72;
-        // Start: text just below the section fold (no excess black)
-        crawlEl2.style.setProperty('--crawl-start', contentH + 'px');
-        crawlEl2.style.animation = 'none';
-        crawlEl2.offsetHeight; // force reflow
-        // No delay - text starts rising immediately
-        crawlEl2.style.animation = 'crawl 66s linear -2s both';
-        crawlEl2.style.animationPlayState = 'running';
-        document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
-        document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
-        const musicContainer = document.getElementById('music-container');
-        if (musicContainer) musicContainer.classList.add('visible');
-        // Dynamic: show portfolio title when last sentence reaches middle of screen
-        const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.max(0, Math.round((P_title * 66 - 1.5) * 1000));
-        setTimeout(() => {
-          document.getElementById('portfolio-title').classList.add('visible');
-        }, titleDelay);
-      }, 100);
-    }, 5000);
+        document.getElementById('portfolio-title').classList.add('visible');
+      }, titleDelay);
+    }, 3300);
+
+    // Remove the logo layer after the distant fade finishes.
+    setTimeout(() => {
+      logoScr.style.display = 'none';
+    }, 5400);
 
   }, 1000);
 });
