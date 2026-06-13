@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- CRAWL-66S-ONE-NOTCH-FASTER-V1 -->
 <!-- MASHBIR-RIGHT-EDGE-NUMBERS-VISIBLE-V1 -->
 <!-- ARIEL1-2-TIGHTER-3-4-BIGGER-V1 -->
 <!-- PORTFOLIO-TITLE-2S-LATER-V1 -->
@@ -147,7 +148,7 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 
 #crawl{
-  animation:crawl 67s linear forwards;
+  animation:crawl 66s linear forwards;
   animation-play-state:paused;
   padding-bottom:8vh;
 }
@@ -964,7 +965,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         crawlEl2.style.animation = 'none';
         crawlEl2.offsetHeight; // force reflow
         // No delay - text starts rising immediately
-        crawlEl2.style.animation = 'crawl 67s linear -2s both';
+        crawlEl2.style.animation = 'crawl 66s linear -2s both';
         crawlEl2.style.animationPlayState = 'running';
         document.querySelectorAll('.main-content').forEach(el => el.style.visibility = 'visible');
         document.querySelectorAll('.contact-section').forEach(el => el.style.visibility = 'visible');
@@ -972,7 +973,7 @@ document.getElementById('intro-btn').addEventListener('click', () => {
         if (musicContainer) musicContainer.classList.add('visible');
         // Dynamic: show portfolio title when last sentence reaches middle of screen
         const P_title = (contentH + sectionH / 2) / (2 * contentH);
-        const titleDelay = Math.max(0, Math.round((P_title * 67 - 1.5) * 1000));
+        const titleDelay = Math.max(0, Math.round((P_title * 66 - 1.5) * 1000));
         setTimeout(() => {
           document.getElementById('portfolio-title').classList.add('visible');
         }, titleDelay);
