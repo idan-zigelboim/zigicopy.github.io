@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>zigicopy</title>
+<!-- CRAWL-TEXT-AH-GAM-TZEVA-LO-MESHANE-V1 -->
+<!-- CRAWL-TEXT-REGA-AZ-ZE-TZEVA-TO-AZ-ZE-TZEVA-V1 -->
+<!-- CRAWL-TITLE-EPISODE-I-PORTFOLIO-V1 -->
+<!-- INTRO-NAME-LOGO-CRAWL-PART-I-PORTFOLIO-V1 -->
 <!-- INTRO-PORTFOLIO-EVEN-ZOOM-TINY-FADE-V1 -->
 <!-- INTRO-PORTFOLIO-SLOWER-FARTHER-LATER-FADE-V1 -->
 <!-- INTRO-ZOOMOUT-SMOOTHER-CRAWL-HIDDEN-UNTIL-START-V1 -->
@@ -165,12 +169,25 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
   100%{transform:translateY(-100%);opacity:0;}
 }
 
-.crawl-logo{font-family:'StarJedi','Oswald',sans-serif;font-weight:700;
-  font-size:clamp(90px,13vw,180px);
-  letter-spacing:0.18em;text-align:center;
+.crawl-logo{font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(54px,7.2vw,108px);
+  letter-spacing:0.14em;text-align:center;
   color:#c9a72a;
   text-shadow:none;
-  margin-bottom:48px;padding-top:8vh;
+  margin-bottom:54px;padding-top:8vh;
+  text-transform:uppercase;
+  line-height:1.02;
+}
+.crawl-logo .crawl-part{
+  display:block;
+  font-size:0.42em;
+  letter-spacing:0.28em;
+  margin-bottom:0.16em;
+}
+.crawl-logo .crawl-title-word{
+  display:block;
+  font-size:1em;
+  letter-spacing:0.16em;
 }
 .crawl-title{
   font-family:'Oswald',sans-serif;font-weight:300;
@@ -344,17 +361,36 @@ body{background:#000;color:var(--yellow);font-family:'News Cycle',sans-serif;cur
 }
 #logo-screen.active{opacity:1;pointer-events:none;}
 #sw-logo{
-  font-family:'Pathway Gothic One',sans-serif;
-  font-size:22vw;
-  letter-spacing:0.04em;
+  font-family:'StarJhol','StarJedi','Pathway Gothic One',sans-serif;
+  font-size:clamp(78px,18vw,260px);
+  letter-spacing:0.06em;
   color:transparent;
-  -webkit-text-stroke:3px #C9922A;
+  -webkit-text-stroke:clamp(1.5px,0.23vw,3px) #C9922A;
   text-align:center;
-  line-height:0.85;
+  line-height:0.72;
   white-space:nowrap;
+  text-transform:uppercase;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:0;
   transform:scale(4.6);
   opacity:0;
   will-change:transform,opacity;
+}
+#sw-logo .logo-name-line{
+  display:block;
+  line-height:0.74;
+}
+#sw-logo .logo-name-top{
+  font-size:1em;
+  letter-spacing:0.16em;
+}
+#sw-logo .logo-name-bottom{
+  font-size:0.55em;
+  letter-spacing:0.08em;
+  margin-top:-0.12em;
 }
 #sw-logo.animate{
   animation:logoZoom 4.9s linear forwards;
@@ -711,7 +747,10 @@ footer a:hover{color:var(--yellow);}
 </div>
 
 <div id="logo-screen">
-  <div id="sw-logo" style="font-family:'StarJhol',sans-serif;">Portfolio</div>
+  <div id="sw-logo">
+    <span class="logo-name-line logo-name-top">Idan</span>
+    <span class="logo-name-line logo-name-bottom">zigelboim</span>
+  </div>
 </div>
 
 
@@ -723,7 +762,10 @@ footer a:hover{color:var(--yellow);}
   <div id="crawl-wrapper">
     <div id="crawl">
 
-      <div class="crawl-logo">idan zigelboim</div>
+      <div class="crawl-logo">
+        <span class="crawl-part">Episode I</span>
+        <span class="crawl-title-word">PORTFOLIO</span>
+      </div>
       
 
       <div class="crawl-body">
@@ -736,7 +778,7 @@ footer a:hover{color:var(--yellow);}
           רבאק.<br>
           לא ללכת, אני שניה מסדר את זה.<br>
           יש אה… אמורה להיות מהירות…<br>
-          <span style="color:#4DAAFF;">רגע אז זה צבע.</span><br>
+          <span style="color:#4DAAFF;">אז זה צבע</span><br>
           <span style="font-size:1.25em;">וזה גודל, נכון? כן כן.</span><br>
           אז אולי ככ- מה?<br>
           מה??<br>
@@ -745,8 +787,8 @@ footer a:hover{color:var(--yellow);}
           לא, לא בא לי מלון<br>
           אני רגע עושה משהו.<br>
           <span style="color:#FFD54A;">וזה מה?</span><br>
-          <span style="color:#49D66B;">אה<br>
-          אין לי כוח, לא עובד.<br>
+          <span style="color:#49D66B;">אה גם צבע<br>
+          לא משנה<br>
           העבודות למטה, נדבר פנים אל פנים גם ככה.<br>
           <br>
           *ואם את/ה תוהה איך אני נראה -<br>
